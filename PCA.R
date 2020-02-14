@@ -31,19 +31,40 @@ pre.eig <- get_eigenvalue(pca.pre)
 post.eig <- get_eigenvalue(pca.post)
 
 
-#:::::PCA Loadings:::::
+
+#:::::PCA Coordinates:::::
 pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
 pre.load <- pre.pca$rotation
 pre.sdev <- pre.pca$sdev
-pre.vc <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
-head(pre.vc[,1:8])
-pre.varimpact <- head(pre.vc[,1:8])
+pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
+pre.vc <- head(pre.vcoord[,1:8])
 
 post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
 post.load <- post.pca$rotation
 post.sdev <- post.pca$sdev
-post.vc <- t(apply(post.load, 1, post.vcf, post.sdev))
-post.varimpact <- head(post.vc[,1:8])
+post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
+post.vc <- head(post.vcoord[,1:8])
+
+
+
+#:::::PCA cos2:::::
+pre.cos2 <- pre.vcoord^2
+post.cos2 <- post.vcoord^2
+
+
+
+#:::::PCA Contributions:::::
+pre.cc2 <- apply(pre.cos2, 2, sum)
+contrib <- function(pre.cos2, comp.cos2){pre.cos2*100/comp.cos2}
+pre.varc <- t(apply(pre.cos2, 1, contrib, comp.cos2))
+pre.vcontrib <- head(pre.varc[,1:8])
+
+post.cc2 <- apply(post.cos2, 2, sum)
+contrib <- function(post.cos2, comp.cos2){post.cos2*100/comp.cos2}
+post.varc <- t(apply(post.cos2, 1, contrib, comp.cos2))
+post.vcontrib <- head(post.varc[,1:8])
+
+
 
 #:::::Creating a scree plot:::::
 pre.scree <- fviz_eig(pca.pre)
