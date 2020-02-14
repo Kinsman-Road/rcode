@@ -1,4 +1,4 @@
-#Pulling Drive Files
+#:::::Pulling Drive Files:::::
 install.packages("googledrive")
 library(googledrive)
 drive.fine(n=30)
@@ -11,31 +11,47 @@ post <- read_excel("Post.xlsx")
 
 
 
-#Preparing datasets as data frames
+#:::::Preparing datasets as data frames:::::
 pre <- data.frame(pre)
 post <- data.frame(post)
 
-pre.n <- pre[1:7]      #create numerical only dataframes
-post.n <- post[1:7]    #create numerical only dataframes
+pre.n <- pre[1:7]      #create dataframes with only numerical columns from pre
+post.n <- post[1:7]    #create dataframes with only numerical columns from post
 
 
 
-#PCA
+#:::::PCA:::::
 library(factoextra)
 library(FactoMineR)
 
 pca.pre <- prcomp(pre.n, scale = TRUE)   #singular value pca
 pca.post <- prcomp(post.n, scale = TRUE)   #singular value pca
 
+pre.eig <- get_eigenvalue(pca.pre)
+post.eig <- get_eigenvalue(pca.post)
 
 
-#Creating a scree plot
+#:::::PCA Loadings:::::
+pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
+pre.load <- pre.pca$rotation
+pre.sdev <- pre.pca$sdev
+pre.vc <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
+head(pre.vc[,1:8])
+pre.varimpact <- head(pre.vc[,1:8])
+
+post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
+post.load <- post.pca$rotation
+post.sdev <- post.pca$sdev
+post.vc <- t(apply(post.load, 1, post.vcf, post.sdev))
+post.varimpact <- head(post.vc[,1:8])
+
+#:::::Creating a scree plot:::::
 pre.scree <- fviz_eig(pca.pre)
 post.scree <- fviz_eig(pca.post)
 
 
 
-#Creating contribution plot for individual observations
+#:::::Creating contribution plot for individual observations:::::
 pre.ind <- fviz_pca_ind(pca.pre,
                         col.ind = "cos2",   #maybe "contribution?"
                         gradient.cols = c(),   #default R colors
@@ -52,7 +68,7 @@ post.ind <- fviz_pca_ind(pca.post,
 
 
 
-#Creating contribution plot for variable contributions
+#:::::Creating contribution plot for variable contributions:::::
 pre.var <- fviz_pca_var(pca.pre,
                         col.var = "co2",  #maybe "contribution?"
                         gradient.cols = c(),   #default R colors
@@ -69,23 +85,23 @@ post.var <- fviz_pca_var(pca.post,
 
 
 
-#Creating a biplot(combination of ind + var plots)
+#:::::Creating a biplot(combination of ind + var plots):::::
 pre.bp <- fviz_pca_biplot(pca.pre,
                          col.var = "#E7B800",
                          col.var = "#FC4E07",
                          label = "none",
-                         main = "Pre-Construction Biplot"
+                         main = "Pre-Construction Biplot")
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
                            col.var = "#E7B800",
                            col.var = "#FC4E07",
                            label = "none",
-                           main = "Post-Construction Biplot"
+                           main = "Post-Construction Biplot")
                  
                            
                                      
-#Creating an individual PCA plot with ellipses for categories
+#:::::Creating an individual PCA plot with ellipses for categories:::::
 #(1) First define categories as factors
 
 #--(1a) Pre categories
@@ -110,60 +126,60 @@ post.g.season <- as.factor(post$season[1:655])
 pre.species <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.species,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
                             main = "Pre-Construction: Species Groupings")
 
 pre.solar <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.solar,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
                             main = "Pre-Construction: Daylight Preference")
 
 pre.cat <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cat,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
                             main = "Pre-Construction: Mammalian Groupings")
 
 pre.cam <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cam,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
                             main = "Pre-Construction: Camera Preference")
 
 pre.daynight <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.daynight,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
                             main = "Pre-Construction: Day/Night Preference")
 
 pre.season <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.season,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
                             main = "Pre-Construction: Seasonal Preference")
 
@@ -171,62 +187,62 @@ pre.season <- fviz_pca_ind(pca.pre,
 post.species <- fviz_pca_ind(pca.post,
                             col.ind = post.g.species,
                             palette = c( ),
-                            addEllipses = TRUE
+                            addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
-                            repel = TRUE
+                            repel = TRUE,
                             label = "none",
-                            main = "post-Construction: Species Groupings")
+                            main = "Post-Construction: Species Groupings")
 
 post.solar <- fviz_pca_ind(pca.post,
                           col.ind = post.g.solar,
                           palette = c( ),
-                          addEllipses = TRUE
+                          addEllipses = TRUE,
                           ellipse.type = "confidence",
                           legend.title = "Groups",
-                          repel = TRUE
+                          repel = TRUE,
                           label = "none",
-                          main = "post-Construction: Daylight postference")
+                          main = "Post-Construction: Daylight postference")
 
 post.cat <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cat,
                         palette = c( ),
-                        addEllipses = TRUE
+                        addEllipses = TRUE,
                         ellipse.type = "confidence",
                         legend.title = "Groups",
-                        repel = TRUE
+                        repel = TRUE,
                         label = "none",
-                        main = "post-Construction: Mammalian Groupings")
+                        main = "Post-Construction: Mammalian Groupings")
 
 post.cam <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cam,
                         palette = c( ),
-                        addEllipses = TRUE
+                        addEllipses = TRUE,
                         ellipse.type = "confidence",
                         legend.title = "Groups",
-                        repel = TRUE
+                        repel = TRUE,
                         label = "none",
-                        main = "post-Construction: Camera postference")
+                        main = "Post-Construction: Camera postference")
 
 post.daynight <- fviz_pca_ind(pca.post,
                              col.ind = post.g.daynight,
                              palette = c( ),
-                             addEllipses = TRUE
+                             addEllipses = TRUE,
                              ellipse.type = "confidence",
                              legend.title = "Groups",
-                             repel = TRUE
+                             repel = TRUE,
                              label = "none",
-                             main = "post-Construction: Day/Night postference")
+                             main = "Post-Construction: Day/Night postference")
 
 post.season <- fviz_pca_ind(pca.post,
                            col.ind = post.g.season,
                            palette = c( ),
-                           addEllipses = TRUE
+                           addEllipses = TRUE,
                            ellipse.type = "confidence",
                            legend.title = "Groups",
-                           repel = TRUE
+                           repel = TRUE,
                            label = "none",
-                           main = "post-Construction: Seasonal postference")
+                           main = "Post-Construction: Seasonal postference")
 
 
 
