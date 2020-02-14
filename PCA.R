@@ -1,3 +1,8 @@
+#links
+https://www.datacamp.com/community/tutorials/pca-analysis-r
+http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
+  
+
 #:::::Pulling Drive Files:::::
 install.packages("googledrive")
 library(googledrive)
@@ -264,32 +269,5 @@ post.season <- fviz_pca_ind(pca.post,
                            repel = TRUE,
                            label = "none",
                            main = "Post-Construction: Seasonal postference")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
