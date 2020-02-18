@@ -3,7 +3,7 @@ library(cluster)
 library(factoextra)
 library(dendextend)
 
-#-----Data Prep-----test
+#-----Data Prep-----
 pre.scale <- scale(pre.1)
 post.scale <- scale(post.1)
 
