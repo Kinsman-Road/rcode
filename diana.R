@@ -3,6 +3,8 @@ library(cluster)
 library(factoextra)
 library(dendextend)
 
+#DIANA = Divisive Analysis Clustering (categorical clustering)
+
 #-----Data Prep-----
 pre.scale <- scale(pre.1)
 post.scale <- scale(post.1)
