@@ -34,55 +34,105 @@ post.n <- scale(post[1:7])    #create dataframes with only numerical columns fro
 #Regression to predict what hour key species will appear based off of numerical variables
 #Numerical Variables - Count, Boeckman Traffic Data
 
-#Deer
-par(mrow=c(5,2))
-deer.count <- lm([hour] ~ individuals)
-deer.count <- lm([hour] ~ solar)
-deer.count <- lm([hour] ~ tmin)
-deer.count <- lm([hour] ~ tmax)
-deer.count <- lm([hour] ~ pcip)
-deer.count <- lm([hour] ~ traffic)
-deer.count <- lm([hour] ~ weather)
-deer.count <- lm([hour] ~ sunlight)
-deer.count <- lm([hour] ~ wind)
-deer.count <- lm([hour] ~ [individuals:wind)
+#:::::  Deer  :::::
 
-#Raccoon
-par(mrow=c(5,2))
-rac.count <- lm([hour] ~ individuals)
-rac.count <- lm([hour] ~ solar)
-rac.count <- lm([hour] ~ tmin)
-rac.count <- lm([hour] ~ tmax)
-rac.count <- lm([hour] ~ pcip)
-rac.count <- lm([hour] ~ traffic)
-rac.count <- lm([hour] ~ weather)
-rac.count <- lm([hour] ~ sunlight)
-rac.count <- lm([hour] ~ wind)
-rac.count <- lm([hour] ~ [individuals:wind)
+#Pre-Construction
+pre.deer.month <- lm(count ~ month, data=subset(pre,species="Deer"))
+pre.deer.hour <- lm(count ~ hour, data=subset(pre,species="Deer"))
+pre.deer.pcip <- lm(count ~ pcip, data=subset(pre,species="Deer"))
+pre.deer.tmax <- lm(count ~ tmax, data=subset(pre,species="Deer"))
+pre.deer.tmin <- lm(count ~ tmin, data=subset(pre,species="Deer"))
+pre.deer.traffic <- lm(count ~ traffic, data=subset(pre,species="Deer"))
+pre.deer.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Deer"))
 
-#Coyote
-par(mrow=c(5,2))
-coy.count <- lm([hour] ~ individuals)
-coy.count <- lm([hour] ~ solar)
-coy.count <- lm([hour] ~ tmin)
-coy.count <- lm([hour] ~ tmax)
-coy.count <- lm([hour] ~ pcip)
-coy.count <- lm([hour] ~ traffic)
-coy.count <- lm([hour] ~ weather)
-coy.count <- lm([hour] ~ sunlight)
-coy.count <- lm([hour] ~ wind)
-coy.count <- lm([hour] ~ [individuals:wind)
+#Post-Construction
+post.deer.month <- lm(count ~ month, data=subset(pre,species="Deer"))
+post.deer.hour <- lm(count ~ hour, data=subset(pre,species="Deer"))
+post.deer.pcip <- lm(count ~ pcip, data=subset(pre,species="Deer"))
+post.deer.tmax <- lm(count ~ tmax, data=subset(pre,species="Deer"))
+post.deer.tmin <- lm(count ~ tmin, data=subset(pre,species="Deer"))
+post.deer.traffic <- lm(count ~ traffic, data=subset(pre,species="Deer"))
+post.deer.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Deer"))
 
-#Rabbit
 par(mrow=c(5,2))
-rab.count <- lm([hour] ~ individuals)
-rab.count <- lm([hour] ~ solar)
-rab.count <- lm([hour] ~ tmin)
-rab.count <- lm([hour] ~ tmax)
-rab.count <- lm([hour] ~ pcip)
-rab.count <- lm([hour] ~ traffic)
-rab.count <- lm([hour] ~ weather)
-rab.count <- lm([hour] ~ sunlight)
-rab.count <- lm([hour] ~ wind)
-rab.count <- lm([hour] ~ [individuals:wind)
+plot(pre.deer.lm)
+plot(post.deer.lm)
+
+
+
+#:::::  Raccoon  :::::
+
+#Pre-Construction
+pre.racc.month <- lm(count ~ month, data=subset(pre,species="Raccoon"))
+pre.racc.hour <- lm(count ~ hour, data=subset(pre,species="Raccoon"))
+pre.racc.pcip <- lm(count ~ pcip, data=subset(pre,species="Raccoon"))
+pre.racc.tmax <- lm(count ~ tmax, data=subset(pre,species="Raccoon"))
+pre.racc.tmin <- lm(count ~ tmin, data=subset(pre,species="Raccoon"))
+pre.racc.traffic <- lm(count ~ traffic, data=subset(pre,species="Raccoon"))
+pre.racc.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Raccoon"))
+
+#Post-Construction
+post.racc.month <- lm(count ~ month, data=subset(pre,species="Raccoon"))
+post.racc.hour <- lm(count ~ hour, data=subset(pre,species="Raccoon"))
+post.racc.pcip <- lm(count ~ pcip, data=subset(pre,species="Raccoon"))
+post.racc.tmax <- lm(count ~ tmax, data=subset(pre,species="Raccoon"))
+post.racc.tmin <- lm(count ~ tmin, data=subset(pre,species="Raccoon"))
+post.racc.traffic <- lm(count ~ traffic, data=subset(pre,species="Raccoon"))
+post.racc.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Raccoon"))
+
+par(mrow=c(5,2))
+plot(pre.racc.lm)
+plot(post.racc.lm)
+
+
+
+#:::::  Coyote  :::::
+
+#Pre-Construction
+pre.racc.month <- lm(count ~ month, data=subset(pre,species="Raccoon"))
+pre.racc.hour <- lm(count ~ hour, data=subset(pre,species="Raccoon"))
+pre.racc.pcip <- lm(count ~ pcip, data=subset(pre,species="Raccoon"))
+pre.racc.tmax <- lm(count ~ tmax, data=subset(pre,species="Raccoon"))
+pre.racc.tmin <- lm(count ~ tmin, data=subset(pre,species="Raccoon"))
+pre.racc.traffic <- lm(count ~ traffic, data=subset(pre,species="Raccoon"))
+pre.racc.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Raccoon"))
+
+#Post-Construction
+post.racc.month <- lm(count ~ month, data=subset(pre,species="Raccoon"))
+post.racc.hour <- lm(count ~ hour, data=subset(pre,species="Raccoon"))
+post.racc.pcip <- lm(count ~ pcip, data=subset(pre,species="Raccoon"))
+post.racc.tmax <- lm(count ~ tmax, data=subset(pre,species="Raccoon"))
+post.racc.tmin <- lm(count ~ tmin, data=subset(pre,species="Raccoon"))
+post.racc.traffic <- lm(count ~ traffic, data=subset(pre,species="Raccoon"))
+post.racc.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Raccoon"))
+
+par(mrow=c(5,2))
+plot(pre.racc.lm)
+plot(post.racc.lm)
+
+
+
+#:::::  Rabbit  :::::
+
+#Pre-Construction
+pre.racc.month <- lm(count ~ month, data=subset(pre,species="Raccoon"))
+pre.racc.hour <- lm(count ~ hour, data=subset(pre,species="Raccoon"))
+pre.racc.pcip <- lm(count ~ pcip, data=subset(pre,species="Raccoon"))
+pre.racc.tmax <- lm(count ~ tmax, data=subset(pre,species="Raccoon"))
+pre.racc.tmin <- lm(count ~ tmin, data=subset(pre,species="Raccoon"))
+pre.racc.traffic <- lm(count ~ traffic, data=subset(pre,species="Raccoon"))
+pre.racc.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Raccoon"))
+
+#Post-Construction
+post.racc.month <- lm(count ~ month, data=subset(pre,species="Raccoon"))
+post.racc.hour <- lm(count ~ hour, data=subset(pre,species="Raccoon"))
+post.racc.pcip <- lm(count ~ pcip, data=subset(pre,species="Raccoon"))
+post.racc.tmax <- lm(count ~ tmax, data=subset(pre,species="Raccoon"))
+post.racc.tmin <- lm(count ~ tmin, data=subset(pre,species="Raccoon"))
+post.racc.traffic <- lm(count ~ traffic, data=subset(pre,species="Raccoon"))
+post.racc.lm <- lm(count ~ month + hour + pcip + tmax + tmin+ traffic, data=subset(pre,species="Raccoon"))
+
+par(mrow=c(5,2))
+plot(pre.racc.lm)
+plot(post.racc.lm)
 
