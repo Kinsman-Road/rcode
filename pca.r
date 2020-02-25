@@ -1,24 +1,23 @@
-#links
+#Resources
 #https://www.datacamp.com/community/tutorials/pca-analysis-r
 #http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
-
-#New Precipitation Data
 #https://www.climate.gov/maps-data/dataset/past-weather-zip-code-data-table
 
-#:::::Pulling Drive Files:::::
+#:::::  Pulling Drive Files  :::::
 install.packages("googledrive")
 library(googledrive)
 drive.fine(n=30)
 
 drive_download("Pre")
 drive_download("Post")
+drive_download("pca")
 
-pre <- read_excel("Pre.xlsx")
-post <- read_excel("Post.xlsx")
+#:::::  Import  :::::
+pre <- read_excel("pca.xlsx", sheet="pre")
+post <- read_excel("pca.xlsx", sheet="post")
 
 
-
-#:::::Preparing datasets as data frames:::::
+#:::::  Preparing datasets as data frames  :::::
 pre <- data.frame(pre)
 post <- data.frame(post)
 
