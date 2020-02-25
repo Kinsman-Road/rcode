@@ -30,3 +30,53 @@ post <- data.frame(post)
 pre.n <- scale(pre[1:7])      #create dataframes with only numerical columns from pre. Be sure to choose [i:a]
 post.n <- scale(post[1:7])    #create dataframes with only numerical columns from post. Be sure to choose [i:a]
 
+
+#::: Initial Regression :::
+#::: Pre + Post to compare potential changes in behavior :::
+#Regression to predict what hour key species will appear based off of numerical variables
+#Numerical Variables - Count, Boeckman Traffic Data
+
+#Deer
+par(mrow=c(4,2))
+deer.count <- lm([timeday] ~ count)
+deer.count <- lm([timeday] ~ solar)
+deer.count <- lm([timeday] ~ camera)
+deer.count <- lm([timeday] ~ tmin)
+deer.count <- lm([timeday] ~ tmax)
+deer.count <- lm([timeday] ~ pcip)
+deer.count <- lm([timeday] ~ traffic)
+deer.count <- lm([timeday] ~ count+solar+camera+tmin+tmax+pcip+traffic)
+
+#Raccoon
+par(mrow=c(4,2))
+deer.count <- lm([timeday] ~ count)
+deer.count <- lm([timeday] ~ solar)
+deer.count <- lm([timeday] ~ camera)
+deer.count <- lm([timeday] ~ tmin)
+deer.count <- lm([timeday] ~ tmax)
+deer.count <- lm([timeday] ~ pcip)
+deer.count <- lm([timeday] ~ traffic)
+deer.count <- lm([timeday] ~ count+solar+camera+tmin+tmax+pcip+traffic)
+
+#Coyote
+par(mrow=c(4,2))
+deer.count <- lm([timeday] ~ count)
+deer.count <- lm([timeday] ~ solar)
+deer.count <- lm([timeday] ~ camera)
+deer.count <- lm([timeday] ~ tmin)
+deer.count <- lm([timeday] ~ tmax)
+deer.count <- lm([timeday] ~ pcip)
+deer.count <- lm([timeday] ~ traffic)
+deer.count <- lm([timeday] ~ count+solar+camera+tmin+tmax+pcip+traffic)
+
+#Rabbit
+par(mrow=c(4,2))
+deer.count <- lm([timeday] ~ count)
+deer.count <- lm([timeday] ~ solar)
+deer.count <- lm([timeday] ~ camera)
+deer.count <- lm([timeday] ~ tmin)
+deer.count <- lm([timeday] ~ tmax)
+deer.count <- lm([timeday] ~ pcip)
+deer.count <- lm([timeday] ~ traffic)
+deer.count <- lm([timeday] ~ count+solar+camera+tmin+tmax+pcip+traffic)
+

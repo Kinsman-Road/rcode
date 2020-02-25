@@ -1,7 +1,9 @@
 #links
-https://www.datacamp.com/community/tutorials/pca-analysis-r
-http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
-  
+#https://www.datacamp.com/community/tutorials/pca-analysis-r
+#http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
+
+#New Precipitation Data
+#https://www.climate.gov/maps-data/dataset/past-weather-zip-code-data-table
 
 #:::::Pulling Drive Files:::::
 install.packages("googledrive")
