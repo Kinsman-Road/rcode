@@ -134,20 +134,18 @@ post.bp <- fviz_pca_biplot(pca.post,
 #--(1a) Pre categories
 pre.g.species <- as.factor(pre$species[1:470])
 pre.g.solar <- as.factor(pre$solar[1:470])
-pre.g.cat <- as.factor(pre$cat[1:470])
-pre.g.cam <- as.factor(pre$cam[1:470])
-pre.g.daynight <- as.factor(pre$daynight[1:470])
-pre.g.season <- as.factor(pre$season[1:470])
-pre.g.season <- as.factor(pre$time[1:470])
+pre.g.cat <- as.factor(pre$category[1:470])
+pre.g.cam <- as.factor(pre$camera[1:470])
+pre.g.traffic <- as.factor(pre$traffic[1:470])
+pre.g.dnc <- as.factor(pre$dnc[1:470])
 
 #--(1b) Post categories
 post.g.species <- as.factor(post$species[1:655])
 post.g.solar <- as.factor(post$solar[1:655])
-post.g.cat <- as.factor(post$cat[1:655])
-post.g.cam <- as.factor(post$cam[1:655])
-post.g.daynight <- as.factor(post$daynight[1:655])
-post.g.season <- as.factor(post$season[1:655])
-post.g.season <- as.factor(post$time[1:655])
+post.g.cat <- as.factor(post$category[1:655])
+post.g.cam <- as.factor(post$camera[1:655])
+post.g.traffic <- as.factor(post$traffic[1:655])
+post.g.dnc <- as.factor(post$dnc[1:655])
 
 #(2) Produce ellipses PCA graphs for every factor   
 
@@ -192,26 +190,6 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             label = "none",
                             main = "Pre-Construction: Camera Preference")
 
-pre.daynight <- fviz_pca_ind(pca.pre,
-                            col.ind = pre.g.daynight,
-                            palette = c( ),
-                            addEllipses = TRUE,
-                            ellipse.type = "confidence",
-                            legend.title = "Groups",
-                            repel = TRUE,
-                            label = "none",
-                            main = "Pre-Construction: Day/Night Preference")
-
-pre.season <- fviz_pca_ind(pca.pre,
-                            col.ind = pre.g.season,
-                            palette = c( ),
-                            addEllipses = TRUE,
-                            ellipse.type = "confidence",
-                            legend.title = "Groups",
-                            repel = TRUE,
-                            label = "none",
-                            main = "Pre-Construction: Seasonal Preference")
-
 pre.traffic <- fviz_pca_ind(pca.pre,
                            col.ind = pre.g.traffic,
                            palette = c( ),
@@ -221,6 +199,16 @@ pre.traffic <- fviz_pca_ind(pca.pre,
                            repel = TRUE,
                            label = "none",
                            main = "Pre-Construction: SUMMER Traffic Preference")
+
+pre.dnc <- fviz_pca_ind(pca.pre,
+                            col.ind = pre.g.dnc,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            main = "Pre-Construction: D/N/C Category")
 
 #--(2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
@@ -263,26 +251,6 @@ post.cam <- fviz_pca_ind(pca.post,
                         label = "none",
                         main = "Post-Construction: Camera Preference")
 
-post.daynight <- fviz_pca_ind(pca.post,
-                             col.ind = post.g.daynight,
-                             palette = c( ),
-                             addEllipses = TRUE,
-                             ellipse.type = "confidence",
-                             legend.title = "Groups",
-                             repel = TRUE,
-                             label = "none",
-                             main = "Post-Construction: Day/Night Preference")
-
-post.season <- fviz_pca_ind(pca.post,
-                           col.ind = post.g.season,
-                           palette = c( ),
-                           addEllipses = TRUE,
-                           ellipse.type = "confidence",
-                           legend.title = "Groups",
-                           repel = TRUE,
-                           label = "none",
-                           main = "Post-Construction: Seasonal Preference")
-
 post.traffic <- fviz_pca_ind(pca.post,
                             col.ind = post.g.traffic,
                             palette = c( ),
@@ -292,4 +260,14 @@ post.traffic <- fviz_pca_ind(pca.post,
                             repel = TRUE,
                             label = "none",
                             main = "Post-Construction: SUMMER Traffic Preference")
+
+post.dnc <- fviz_pca_ind(pca.post,
+                             col.ind = post.g.dnc,
+                             palette = c( ),
+                             addEllipses = TRUE,
+                             ellipse.type = "confidence",
+                             legend.title = "Groups",
+                             repel = TRUE,
+                             label = "none",
+                             main = "Post-Construction: D/N/C Category")
 
