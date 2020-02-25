@@ -1,3 +1,4 @@
+#::::: Packages :::::
 library(tidyverse)
 library(cluster)
 library(factoextra)
@@ -5,18 +6,23 @@ library(dendextend)
 
 #DIANA = Divisive Analysis Clustering (categorical clustering)
 
+#:::::  Import  :::::
+#Use numerical data columns from PCA spreadsheet
+pre <- read_excel("pca.xlsx", sheet="pre")
+post <- read_excel("pca.xlsx", sheet="post")
+
 #-----Data Prep-----
-pre.scale <- scale(pre.1)
-post.scale <- scale(post.1)
+pre.scale <- scale(pre[1:6])
+post.scale <- scale(post[1:6])
 
 pre.d <- dist(pre.scale, method = "euclidean")
 post.d <- dist(post.scale, method = "euclidean")
 
-#-----Hclust: Complete-----
+#[1]-----Hclust: Complete-----
 pre.hc1 <- hclust(pre.d, method = "complete")
 post.hc1 <- hclust(post.d, method = "complete")
 
-#-----Agnes: Complete-----
+#[2]-----Agnes: Complete-----
 pre.hc2 <- agnes(pre.scale, method="complete")
 post.hc2 <- agnes(post.scale, method="complete")
 
@@ -24,7 +30,7 @@ post.hc2 <- agnes(post.scale, method="complete")
 pre.hc2$ac
 post.hc2$ac
 
-#-----Agnes: Ward-----
+#[3]-----Agnes: Ward-----
 pre.hc3 <- agnes(pre.scale, method = "ward")
 post.hc3 <- agnes(post.scale, method = "ward")
 
@@ -34,7 +40,7 @@ post.pltree <- pltree(post.hc3, cex=0.6, hang=-1, main="Post-Construction: Dendr
 pre.hc3.dend <- rect.hclust(pre.hc3, k=4, border = 2:5)
 post.hc3.dend <- rect.hclust(post.hc3, k=4, border = 2:5)
 
-#-----Divisive Hierarchical Clustering (DIANA)-----
+#[4]-----Divisive Hierarchical Clustering (DIANA)-----
 pre.hc4 <- diana(pre.scale)
 post.hc4 <- diana(post.scale)
 
@@ -59,7 +65,7 @@ post.cluster4 <- fviz_cluster(list(data=post.scale, cluster=post.subgroup4), mai
 pre.cluster4
 post.cluster4
 
-#-----Ward's Method-----
+#[5]-----Ward's Method-----
 pre.hc5 <- hclust(pre.scale, method = "ward.D2")
 post.hc5 <- hclust(post.scale, method = "ward.D2")
 
