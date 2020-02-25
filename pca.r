@@ -3,14 +3,14 @@
 #http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
 #https://www.climate.gov/maps-data/dataset/past-weather-zip-code-data-table
 
-#:::::  Pulling Drive Files  :::::
+#:::::  If Pulling From Drive Files  :::::
+#Note: If pulling from Github, you can input the code from the next section: "Import"
 install.packages("googledrive")
 library(googledrive)
 drive.fine(n=30)
 
 drive_download("Pre")
 drive_download("Post")
-drive_download("pca")
 
 #:::::  Import  :::::
 pre <- read_excel("pca.xlsx", sheet="pre")
