@@ -211,15 +211,15 @@ pre.season <- fviz_pca_ind(pca.pre,
                             label = "none",
                             main = "Pre-Construction: Seasonal Preference")
 
-pre.time <- fviz_pca_ind(pca.pre,
-                           col.ind = pre.g.time,
+pre.traffic <- fviz_pca_ind(pca.pre,
+                           col.ind = pre.g.traffic,
                            palette = c( ),
                            addEllipses = TRUE,
                            ellipse.type = "confidence",
                            legend.title = "Groups",
                            repel = TRUE,
                            label = "none",
-                           main = "Pre-Construction: SUMMER TIME Preference")
+                           main = "Pre-Construction: SUMMER Traffic Preference")
 
 #--(2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
@@ -282,13 +282,13 @@ post.season <- fviz_pca_ind(pca.post,
                            label = "none",
                            main = "Post-Construction: Seasonal Preference")
 
-post.time <- fviz_pca_ind(pca.post,
-                            col.ind = post.g.time,
+post.traffic <- fviz_pca_ind(pca.post,
+                            col.ind = post.g.traffic,
                             palette = c( ),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Post-Construction: SUMMER Time Preference")
+                            main = "Post-Construction: SUMMER Traffic Preference")
 
