@@ -137,6 +137,7 @@ pre.g.cat <- as.factor(pre$cat[1:470])
 pre.g.cam <- as.factor(pre$cam[1:470])
 pre.g.daynight <- as.factor(pre$daynight[1:470])
 pre.g.season <- as.factor(pre$season[1:470])
+pre.g.season <- as.factor(pre$time[1:470])
 
 #--(1b) Post categories
 post.g.species <- as.factor(post$species[1:655])
@@ -145,6 +146,7 @@ post.g.cat <- as.factor(post$cat[1:655])
 post.g.cam <- as.factor(post$cam[1:655])
 post.g.daynight <- as.factor(post$daynight[1:655])
 post.g.season <- as.factor(post$season[1:655])
+post.g.season <- as.factor(post$time[1:655])
 
 #(2) Produce ellipses PCA graphs for every factor   
 
@@ -209,6 +211,16 @@ pre.season <- fviz_pca_ind(pca.pre,
                             label = "none",
                             main = "Pre-Construction: Seasonal Preference")
 
+pre.time <- fviz_pca_ind(pca.pre,
+                           col.ind = pre.g.time,
+                           palette = c( ),
+                           addEllipses = TRUE,
+                           ellipse.type = "confidence",
+                           legend.title = "Groups",
+                           repel = TRUE,
+                           label = "none",
+                           main = "Pre-Construction: SUMMER TIME Preference")
+
 #--(2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
                             col.ind = post.g.species,
@@ -228,7 +240,7 @@ post.solar <- fviz_pca_ind(pca.post,
                           legend.title = "Groups",
                           repel = TRUE,
                           label = "none",
-                          main = "Post-Construction: Daylight postference")
+                          main = "Post-Construction: Daylight preference")
 
 post.cat <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cat,
@@ -248,7 +260,7 @@ post.cam <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        main = "Post-Construction: Camera postference")
+                        main = "Post-Construction: Camera Preference")
 
 post.daynight <- fviz_pca_ind(pca.post,
                              col.ind = post.g.daynight,
@@ -258,7 +270,7 @@ post.daynight <- fviz_pca_ind(pca.post,
                              legend.title = "Groups",
                              repel = TRUE,
                              label = "none",
-                             main = "Post-Construction: Day/Night postference")
+                             main = "Post-Construction: Day/Night Preference")
 
 post.season <- fviz_pca_ind(pca.post,
                            col.ind = post.g.season,
@@ -268,6 +280,15 @@ post.season <- fviz_pca_ind(pca.post,
                            legend.title = "Groups",
                            repel = TRUE,
                            label = "none",
-                           main = "Post-Construction: Seasonal postference")
+                           main = "Post-Construction: Seasonal Preference")
 
+post.time <- fviz_pca_ind(pca.post,
+                            col.ind = post.g.time,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            main = "Post-Construction: SUMMER Time Preference")
 
