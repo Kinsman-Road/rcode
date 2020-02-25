@@ -21,8 +21,8 @@ post <- read_excel("pca.xlsx", sheet="post")
 pre <- data.frame(pre)
 post <- data.frame(post)
 
-pre.n <- pre[1:7]      #create dataframes with only numerical columns from pre
-post.n <- post[1:7]    #create dataframes with only numerical columns from post
+pre.n <- pre[1:6]      #create dataframes with only numerical columns from pre
+post.n <- post[1:6]    #create dataframes with only numerical columns from post
 
 
 
@@ -30,8 +30,8 @@ post.n <- post[1:7]    #create dataframes with only numerical columns from post
 library(factoextra)
 library(FactoMineR)
 
-pca.pre <- prcomp(pre.n, scale = TRUE)   #singular value pca
-pca.post <- prcomp(post.n, scale = TRUE)   #singular value pca
+pca.pre <- prcomp(pre.n, scale = TRUE)   #singular value pca method - not spectral decomposition
+pca.post <- prcomp(post.n, scale = TRUE)   #singular value pca method - not spectral decomposition
 
 pre.eig <- get_eigenvalue(pca.pre)
 post.eig <- get_eigenvalue(pca.post)
@@ -43,13 +43,13 @@ pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
 pre.load <- pre.pca$rotation
 pre.sdev <- pre.pca$sdev
 pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
-pre.vc <- head(pre.vcoord[,1:8])
+pre.vc <- head(pre.vcoord[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
 post.load <- post.pca$rotation
 post.sdev <- post.pca$sdev
 post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
-post.vc <- head(post.vcoord[,1:8])
+post.vc <- head(post.vcoord[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 
 
@@ -63,12 +63,12 @@ post.cos2 <- post.vcoord^2
 pre.cc2 <- apply(pre.cos2, 2, sum)
 contrib <- function(pre.cos2, comp.cos2){pre.cos2*100/comp.cos2}
 pre.varc <- t(apply(pre.cos2, 1, contrib, comp.cos2))
-pre.vcontrib <- head(pre.varc[,1:8])
+pre.vcontrib <- head(pre.varc[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 post.cc2 <- apply(post.cos2, 2, sum)
 contrib <- function(post.cos2, comp.cos2){post.cos2*100/comp.cos2}
 post.varc <- t(apply(post.cos2, 1, contrib, comp.cos2))
-post.vcontrib <- head(post.varc[,1:8])
+post.vcontrib <- head(post.varc[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 
 
