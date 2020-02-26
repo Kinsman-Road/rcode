@@ -3,11 +3,13 @@
 #
 
 
-#::: Todo :::  
-# Goal is to create regression for hours of prediction for every single species
-# Regression for prediction for species dimensions given traffic,e tc
-# Use PCA for variable selection as well as for dimensionality reduction
-# R2 + AIC + Mcp
+#::: Notes :::  
+# Goal is to create regression for count prediction per hour, per species
+# Key Species: Deer, Raccoons, Coyotes, Rabbit
+# Separate evalution for pre and post
+# Use PCA used for variable selection
+# R2 + AIC + Mcp for model evalulation
+# Potential to use PCR for model and kernel PCR for clustering
 
 #::: Pulling Drive Files :::
 install.packages("googledrive")
