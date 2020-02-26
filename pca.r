@@ -13,8 +13,9 @@ drive_download("Pre")
 drive_download("Post")
 
 #:::::  Import  :::::
-pre <- read_excel("pca.xlsx", sheet="pca.pre")
-post <- read_excel("pca.xlsx", sheet="pca.post")
+library(readxl)
+pre <- read_excel("pca.xlsx", sheet = "pca.pre")
+post <- read_excel("pca.xlsx", sheet = "pca.post")
 
 
 #:::::  Preparing datasets as data frames  :::::
@@ -40,22 +41,27 @@ post.eig <- get_eigenvalue(pca.post)
 
 #:::::PCA Coordinates:::::
 pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
-pre.load <- pre.pca$rotation
-pre.sdev <- pre.pca$sdev
+pre.load <- pca.pre$rotation
+pre.sdev <- pca.pre$sdev
 pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
-pre.vc <- head(pre.vcoord[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+pre.vc <- head(pre.vcoord[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
-post.load <- post.pca$rotation
-post.sdev <- post.pca$sdev
+post.load <- pca.post$rotation
+post.sdev <- pca.post$sdev
 post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
-post.vc <- head(post.vcoord[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+post.vc <- head(post.vcoord[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
+pre.vc #table of pre pca coords
+post.vc #table of post pca coords
 
 
 #:::::PCA cos2:::::
 pre.cos2 <- pre.vcoord^2
 post.cos2 <- post.vcoord^2
+
+pre.cos2
+post.cos2
 
 
 
@@ -63,13 +69,15 @@ post.cos2 <- post.vcoord^2
 pre.cc2 <- apply(pre.cos2, 2, sum)
 contrib <- function(pre.cos2, comp.cos2){pre.cos2*100/comp.cos2}
 pre.varc <- t(apply(pre.cos2, 1, contrib, comp.cos2))
-pre.vcontrib <- head(pre.varc[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+pre.vcontrib <- head(pre.varc[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 post.cc2 <- apply(post.cos2, 2, sum)
 contrib <- function(post.cos2, comp.cos2){post.cos2*100/comp.cos2}
 post.varc <- t(apply(post.cos2, 1, contrib, comp.cos2))
-post.vcontrib <- head(post.varc[,1:8])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+post.vcontrib <- head(post.varc[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
+pre.vcontrib
+post.vcontrib
 
 
 #:::::Creating a scree plot:::::
@@ -84,48 +92,48 @@ pre.ind <- fviz_pca_ind(pca.pre,
                         gradient.cols = c(),   #default R colors
                         repel = TRUE,
                         label = "none",
-                        main = "Pre-Construction Individual Plots")
+                        title = "Pre-Construction Individual Plots")
 
 post.ind <- fviz_pca_ind(pca.post,
                         col.ind = "cos2",
                         gradient.cols = c(),   #default R colors
                         repel = TRUE,
                         label = "none",
-                        main = "Post-Construction Individual Plots")
+                        title = "Post-Construction Individual Plots")
 
 
 
 #:::::Creating contribution plot for variable contributions:::::
 pre.var <- fviz_pca_var(pca.pre,
-                        col.var = "co2",  #maybe "contribution?"
+                        col.var = "cos2",  #maybe "contribution?"
                         gradient.cols = c(),   #default R colors
                         repel = TRUE,
-                        label = "none",
-                        main = "Pre-Construction Variable Contribution")
+                        title = "Pre-Construction Variable Contribution")
 
 post.var <- fviz_pca_var(pca.post,
-                         col.var = "co2",  #maybe "contribution?"
+                         col.var = "cos2",  #maybe "contribution?"
                          gradient.cols = c(),   #default R colors
                          repel = TRUE,
-                         label = "none",
-                         main = "Post-Construction Variable Contribution")
+                         title = "Post-Construction Variable Contribution")
 
-
+pre.var
+post.var
 
 #:::::Creating a biplot(combination of ind + var plots):::::
 pre.bp <- fviz_pca_biplot(pca.pre,
-                         col.var = "#E7B800",
+                         col.ind = "#E7B800",
                          col.var = "#FC4E07",
-                         label = "none",
-                         main = "Pre-Construction Biplot")
+                         title = "Pre-Construction Biplot")
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
-                           col.var = "#E7B800",
+                           col.ind = "#E7B800",
                            col.var = "#FC4E07",
-                           label = "none",
-                           main = "Post-Construction Biplot")
-                 
+                           title = "Post-Construction Biplot")
+
+pre.bp
+post.bp
+
                            
                                      
 #:::::Creating an individual PCA plot with ellipses for categories:::::
@@ -158,7 +166,7 @@ pre.species <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Pre-Construction: Species Groupings")
+                            title = "Pre-Construction: Species Groupings")
 
 pre.solar <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.solar,
@@ -168,7 +176,7 @@ pre.solar <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Pre-Construction: Daylight Preference")
+                            title = "Pre-Construction: Daylight Preference")
 
 pre.cat <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cat,
@@ -178,7 +186,7 @@ pre.cat <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Pre-Construction: Mammalian Groupings")
+                            title = "Pre-Construction: Mammalian Groupings")
 
 pre.cam <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cam,
@@ -188,7 +196,7 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Pre-Construction: Camera Preference")
+                            title = "Pre-Construction: Camera Preference")
 
 pre.traffic <- fviz_pca_ind(pca.pre,
                            col.ind = pre.g.traffic,
@@ -198,17 +206,17 @@ pre.traffic <- fviz_pca_ind(pca.pre,
                            legend.title = "Groups",
                            repel = TRUE,
                            label = "none",
-                           main = "Pre-Construction: SUMMER Traffic Preference")
+                           title = "Pre-Construction: SUMMER Traffic Preference")
 
 pre.dnc <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.dnc,
-                            palette = c( ),
+                            palette = c(""),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Pre-Construction: D/N/C Category")
+                            title = "Pre-Construction: D/N/C Category")
 
 #--(2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
@@ -219,7 +227,7 @@ post.species <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Post-Construction: Species Groupings")
+                            title = "Post-Construction: Species Groupings")
 
 post.solar <- fviz_pca_ind(pca.post,
                           col.ind = post.g.solar,
@@ -229,7 +237,7 @@ post.solar <- fviz_pca_ind(pca.post,
                           legend.title = "Groups",
                           repel = TRUE,
                           label = "none",
-                          main = "Post-Construction: Daylight preference")
+                          title = "Post-Construction: Daylight preference")
 
 post.cat <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cat,
@@ -239,7 +247,7 @@ post.cat <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        main = "Post-Construction: Mammalian Groupings")
+                        title = "Post-Construction: Mammalian Groupings")
 
 post.cam <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cam,
@@ -249,7 +257,7 @@ post.cam <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        main = "Post-Construction: Camera Preference")
+                        title = "Post-Construction: Camera Preference")
 
 post.traffic <- fviz_pca_ind(pca.post,
                             col.ind = post.g.traffic,
@@ -259,7 +267,7 @@ post.traffic <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            main = "Post-Construction: SUMMER Traffic Preference")
+                            title = "Post-Construction: SUMMER Traffic Preference")
 
 post.dnc <- fviz_pca_ind(pca.post,
                              col.ind = post.g.dnc,
@@ -269,5 +277,5 @@ post.dnc <- fviz_pca_ind(pca.post,
                              legend.title = "Groups",
                              repel = TRUE,
                              label = "none",
-                             main = "Post-Construction: D/N/C Category")
+                             title = "Post-Construction: D/N/C Category")
 

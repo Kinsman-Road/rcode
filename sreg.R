@@ -5,7 +5,7 @@
 
 #::: Notes :::  
 # Goal is to create regression for count prediction per hour, per species
-# Key Species: Deer, Raccoons, Coyotes, Rabbit
+# Key Species: Deer, Raccoons, Coyotes, Rabbit, Deer Mouse, 
 # Primary Objection: Simple Linear Regression
 # Separate evalution for pre and post
 # Use PCA used for variable selection
