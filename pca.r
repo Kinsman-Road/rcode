@@ -13,8 +13,8 @@ drive_download("Pre")
 drive_download("Post")
 
 #:::::  Import  :::::
-pre <- read_excel("pca.xlsx", sheet="pre")
-post <- read_excel("pca.xlsx", sheet="post")
+pre <- read_excel("pca.xlsx", sheet="pca.pre")
+post <- read_excel("pca.xlsx", sheet="pca.post")
 
 
 #:::::  Preparing datasets as data frames  :::::
