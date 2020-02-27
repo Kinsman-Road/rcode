@@ -47,7 +47,7 @@ d.d.w <- data.frame(hour = rep(0:23, each = 1), rbind(dm.d.w))
 p.m.e <- ggplot(d.m.e, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
-  ggtitle("Aggregate Mean Frequency") +
+  ggtitle("Aggregate Mean Frequency For Eastbound Traffic") +
   facet_wrap(~text) +
   theme_ipsum() +
   theme(legend.position="none") +
@@ -56,7 +56,7 @@ p.m.e <- ggplot(d.m.e, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) +
 p.d.e <- ggplot(d.d.e, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
-  ggtitle("Daily Frequency") +
+  ggtitle("Daily Frequency for Eastbound Traffic") +
   facet_wrap(~text) +
   theme_ipsum() +
   theme(legend.position="none") +
@@ -65,7 +65,7 @@ p.d.e <- ggplot(d.d.e, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) +
 p.m.w <- ggplot(d.m.w, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
-  ggtitle("Aggregate Mean Frequency") +
+  ggtitle("Aggregate Mean Frequency for Westbound Traffic") +
   facet_wrap(~text) +
   theme_ipsum() +
   theme(legend.position="none") +
@@ -74,7 +74,7 @@ p.m.w <- ggplot(d.m.w, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) +
 p.d.w <- ggplot(d.d.w, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
-  ggtitle("Daily Frequency") +
+  ggtitle("Daily Frequency for Westbound") +
   facet_wrap(~text) +
   theme_ipsum() +
   theme(legend.position="none") +
@@ -85,3 +85,6 @@ p.m.e
 p.d.e
 p.m.w
 p.d.w
+
+
+#Overlap
