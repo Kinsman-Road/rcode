@@ -3,6 +3,7 @@ library(readxl)
 library(ggplot2)
 library(hrbrthemes)
 library(viridis)
+library(purrr)
 library(tidyverse)
 
 
