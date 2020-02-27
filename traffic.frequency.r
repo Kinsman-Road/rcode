@@ -17,25 +17,34 @@ d.day.e <- d.eb[c(2:8)]       #For each individual day
 d.mean.w <- d.wb[c(7)]     #For mean aggregates
 d.day.w <- d.wb[c(2:6)]
 
-dm.m <- d.mean.e %>%
+dm.m.e <- d.mean.e %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
   mutate(value = round(as.numeric(value),0))
 
-dm.d <- d.day.e %>%
+dm.d.e <- d.day.e %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
   mutate(value = round(as.numeric(value),0))
 
-d.m <- data.frame(hour = rep(0:23, each = 1), rbind(dm.m))
-d.d <- data.frame(hour = rep(0:23, each = 1), rbind(dm.d))
+dm.m.w <- d.mean.w %>%
+  gather(key="text", value="value") %>%
+  mutate(text = gsub("\\.", " ",text)) %>%
+  mutate(value = round(as.numeric(value),0))
 
-d.m
-d.d
+dm.d.w <- d.day.w %>%
+  gather(key="text", value="value") %>%
+  mutate(text = gsub("\\.", " ",text)) %>%
+  mutate(value = round(as.numeric(value),0))
+
+d.m.e <- data.frame(hour = rep(0:23, each = 1), rbind(dm.m.e))
+d.d.e <- data.frame(hour = rep(0:23, each = 1), rbind(dm.d.e))
+d.m.w <- data.frame(hour = rep(0:23, each = 1), rbind(dm.m.w))
+d.d.w <- data.frame(hour = rep(0:23, each = 1), rbind(dm.d.w))
 
 
 #Generate Plots
-p.m <- ggplot(d.m, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
+p.m.e <- ggplot(d.m.e, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
   ggtitle("Aggregate Mean Frequency") +
@@ -44,7 +53,7 @@ p.m <- ggplot(d.m, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) +
   theme(legend.position="none") +
   xlab("")
 
-p.d <- ggplot(d.d, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
+p.d.e <- ggplot(d.d.e, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
   ggtitle("Daily Frequency") +
@@ -53,5 +62,26 @@ p.d <- ggplot(d.d, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) +
   theme(legend.position="none") +
   xlab("")
 
-p.m
-p.d
+p.m.w <- ggplot(d.m.w, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis(discrete = T, option = "E") +
+  ggtitle("Aggregate Mean Frequency") +
+  facet_wrap(~text) +
+  theme_ipsum() +
+  theme(legend.position="none") +
+  xlab("")
+
+p.d.w <- ggplot(d.d.w, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis(discrete = T, option = "E") +
+  ggtitle("Daily Frequency") +
+  facet_wrap(~text) +
+  theme_ipsum() +
+  theme(legend.position="none") +
+  xlab("")
+
+
+p.m.e
+p.d.e
+p.m.w
+p.d.w
