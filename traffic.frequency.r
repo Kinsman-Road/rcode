@@ -8,21 +8,21 @@ library(tidyverse)
 
 
 #Import Dataset
-d.eb <- data.frame(read_excel("trafficdata.xlsx", sheet = eb))
-d.wb <- data.frame(read_excel("trafficdata.xlsx", sheet = wb))
+d.eb <- data.frame(read_excel("trafficdata.xlsx", sheet = "eb"))
+d.wb <- data.frame(read_excel("trafficdata.xlsx", sheet = "wb"))
 
-d.mean <- d.eb[c(9:11)]     #For mean aggregates
-d.day <- d.eb[c(2:8)]      #For each individual day
+d.mean.e <- d.eb[c(9:11)]     #For mean aggregates
+d.day.e <- d.eb[c(2:8)]       #For each individual day
 
-w.mean <- d.wb[c()]  
-w.day <- d.wb[c()]  
+d.mean.w <- d.wb[c(7)]     #For mean aggregates
+d.day.w <- d.wb[c(2:6)]
 
-dm.m <- d.mean %>%
+dm.m <- d.mean.e %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
   mutate(value = round(as.numeric(value),0))
 
-dm.d <- d.day %>%
+dm.d <- d.day.e %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
   mutate(value = round(as.numeric(value),0))
