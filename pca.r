@@ -43,28 +43,28 @@ post.sdev <- pca.post$sdev
 post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
 post.vc <- head(post.vcoord[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
-pre.vc #table of pre pca coords
-post.vc #table of post pca coords
+pre.vc       #table of pre pca coords
+post.vc      #table of post pca coords
 
 
 #:::::PCA cos2:::::
 pre.cos2 <- pre.vcoord^2
 post.cos2 <- post.vcoord^2
 
-pre.cos2
-post.cos2
+pre.cos2     #table of contribution to each dimension
+post.cos2    #table of contribution to each dimension
 
 
 
-#:::::PCA Contributions:::::
+#:::::PCA Contributions to Each Given Component:::::
 pre.cc2 <- apply(pre.cos2, 2, sum)
-contrib <- function(pre.cos2, comp.cos2){pre.cos2*100/comp.cos2}
-pre.varc <- t(apply(pre.cos2, 1, contrib, comp.cos2))
+contrib <- function(pre.cos2, pre.cc2){pre.cos2*100/pre.cc2}
+pre.varc <- t(apply(pre.cos2, 1, contrib, pre.cc2))
 pre.vcontrib <- head(pre.varc[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 post.cc2 <- apply(post.cos2, 2, sum)
-contrib <- function(post.cos2, comp.cos2){post.cos2*100/comp.cos2}
-post.varc <- t(apply(post.cos2, 1, contrib, comp.cos2))
+contrib <- function(post.cos2, post.cc2){post.cos2*100/post.cc2}
+post.varc <- t(apply(post.cos2, 1, contrib, post.cc2))
 post.vcontrib <- head(post.varc[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 pre.vcontrib
