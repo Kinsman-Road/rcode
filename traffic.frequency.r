@@ -88,18 +88,15 @@ p.d.w
 
 
 #Overlap
-ggplot(data, aes(fill = condition, y=value, x=specie))+
-  geom_bar(position="stack", stat="identity")
+d.tot <- data.frame(read_excel("trafficdata.xlsx", sheet = "tot"))
 
-stack.e <- d.eb[c(11)]     #For mean aggregates
-stack.w <- d.wb[c(7)]     #For mean aggregates
+p.total <- ggplot(d.total, aes(fill=value.1, y=value, x=as.factor(hour))) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_fill_viridis(discrete = T, option = "E") +
+  ggtitle("Mean Weekday Frequency of Eastbound and Westbound Traffic") +
+  theme_ipsum() +
+  theme(legend.position="none") +
+  xlab("")
 
-st.e <- stack.e %>%
-  gather(key="text", value="value") %>%
-  mutate(text = gsub("\\.", " ",text)) %>%
-  mutate(value = round(as.numeric(value),0))
 
-st.w <- stack.w %>%
-  gather(key="text", value="value") %>%
-  mutate(text = gsub("\\.", " ",text)) %>%
-  mutate(value = round(as.numeric(value),0))
+p.total
