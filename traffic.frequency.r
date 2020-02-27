@@ -8,10 +8,14 @@ library(tidyverse)
 
 
 #Import Dataset
-data <- data.frame(read_excel("trafficdata.xlsx"))
+d.eb <- data.frame(read_excel("trafficdata.xlsx", sheet = eb))
+d.wb <- data.frame(read_excel("trafficdata.xlsx", sheet = wb))
 
-d.mean <- data[c(9:11)]     #For mean aggregates
-d.day <- data[c(2:8)]      #For each individual day
+d.mean <- d.eb[c(9:11)]     #For mean aggregates
+d.day <- d.eb[c(2:8)]      #For each individual day
+
+w.mean <- d.wb[c()]  
+w.day <- d.wb[c()]  
 
 dm.m <- d.mean %>%
   gather(key="text", value="value") %>%
