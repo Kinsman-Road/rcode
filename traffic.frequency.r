@@ -15,7 +15,7 @@ d.mean.e <- d.eb[c(9:11)]     #For mean aggregates
 d.day.e <- d.eb[c(2:8)]       #For each individual day
 
 d.mean.w <- d.wb[c(7)]     #For mean aggregates
-d.day.w <- d.wb[c(2:6)]
+d.day.w <- d.wb[c(2:6)]    #For each individual day
 
 dm.m.e <- d.mean.e %>%
   gather(key="text", value="value") %>%
@@ -88,3 +88,18 @@ p.d.w
 
 
 #Overlap
+ggplot(data, aes(fill = condition, y=value, x=specie))+
+  geom_bar(position="stack", stat="identity")
+
+stack.e <- d.eb[c(11)]     #For mean aggregates
+stack.w <- d.wb[c(7)]     #For mean aggregates
+
+st.e <- stack.e %>%
+  gather(key="text", value="value") %>%
+  mutate(text = gsub("\\.", " ",text)) %>%
+  mutate(value = round(as.numeric(value),0))
+
+st.w <- stack.w %>%
+  gather(key="text", value="value") %>%
+  mutate(text = gsub("\\.", " ",text)) %>%
+  mutate(value = round(as.numeric(value),0))
