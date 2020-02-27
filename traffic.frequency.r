@@ -90,7 +90,7 @@ p.d.w
 #Overlap
 d.tot <- data.frame(read_excel("trafficdata.xlsx", sheet = "tot"))
 
-p.total <- ggplot(d.total, aes(fill=value.1, y=value, x=as.factor(hour))) + 
+p.tot <- ggplot(d.tot, aes(fill=as.factor(h), y=wb, x=as.factor(h))) + 
   geom_bar(position="stack", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
   ggtitle("Mean Weekday Frequency of Eastbound and Westbound Traffic") +
@@ -98,5 +98,4 @@ p.total <- ggplot(d.total, aes(fill=value.1, y=value, x=as.factor(hour))) +
   theme(legend.position="none") +
   xlab("")
 
-
-p.total
+p.tot
