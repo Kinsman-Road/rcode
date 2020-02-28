@@ -30,13 +30,17 @@ post.eig <- get_eigenvalue(pca.post)
 
 
 
-#:::::PCA Coordinates:::::
+#::::: PCA Coordinates :::::
+#These are what is driving the direction of the plots below
+
+#Pre-Construction PCA Coordinates
 pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
 pre.load <- pca.pre$rotation
 pre.sdev <- pca.pre$sdev
 pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
 pre.vc <- head(pre.vcoord[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
+#Post-Construction PCA Coordinates
 post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
 post.load <- pca.post$rotation
 post.sdev <- pca.post$sdev
@@ -75,7 +79,8 @@ post.vcontrib
 pre.scree <- fviz_eig(pca.pre)
 post.scree <- fviz_eig(pca.post)
 
-
+pre.scree
+post.scree
 
 #:::::Creating contribution plot for individual observations:::::
 pre.ind <- fviz_pca_ind(pca.pre,
@@ -92,7 +97,8 @@ post.ind <- fviz_pca_ind(pca.post,
                         label = "none",
                         title = "Post-Construction Individual Plots")
 
-
+pre.ind
+post.ind
 
 #:::::Creating contribution plot for variable contributions:::::
 pre.var <- fviz_pca_var(pca.pre,
@@ -137,6 +143,7 @@ pre.g.cat <- as.factor(pre$category[1:470])
 pre.g.cam <- as.factor(pre$camera[1:470])
 pre.g.traffic <- as.factor(pre$traffic[1:470])
 pre.g.dnc <- as.factor(pre$dnc[1:470])
+
 
 #--(1b) Post categories
 post.g.species <- as.factor(post$species[1:655])
@@ -270,3 +277,17 @@ post.dnc <- fviz_pca_ind(pca.post,
                              label = "none",
                              title = "Post-Construction: D/N/C Category")
 
+#Generate Plots
+pre.species
+pre.solar
+pre.cat
+pre.cam
+pre.traffic
+pre.dnc
+
+post.species
+post.solar
+post.cat
+post.cam
+post.traffic
+post.dnc
