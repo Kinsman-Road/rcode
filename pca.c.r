@@ -19,8 +19,8 @@ post <- read_excel("pca.xlsx", sheet = "pca.post.c")
 pre <- data.frame(pre)
 post <- data.frame(post)
 
-pre.n <- pre[1:6]      #create dataframes with only numerical columns from pre
-post.n <- post[1:6]    #create dataframes with only numerical columns from post
+pre.n <- pre[1:7]      #create dataframes with only numerical columns from pre
+post.n <- post[1:7]    #create dataframes with only numerical columns from post
 
 
 
@@ -44,14 +44,14 @@ pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
 pre.load <- pca.pre$rotation
 pre.sdev <- pca.pre$sdev
 pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
-pre.vc <- head(pre.vcoord[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+pre.vc <- head(pre.vcoord[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 #Post-Construction PCA Coordinates
 post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
 post.load <- pca.post$rotation
 post.sdev <- pca.post$sdev
 post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
-post.vc <- head(post.vcoord[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+post.vc <- head(post.vcoord[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 pre.vc       #table of pre pca coords
 post.vc      #table of post pca coords
@@ -70,12 +70,12 @@ post.cos2    #table of contribution to each dimension
 pre.cc2 <- apply(pre.cos2, 2, sum)
 contrib <- function(pre.cos2, pre.cc2){pre.cos2*100/pre.cc2}
 pre.varc <- t(apply(pre.cos2, 1, contrib, pre.cc2))
-pre.vcontrib <- head(pre.varc[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+pre.vcontrib <- head(pre.varc[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 post.cc2 <- apply(post.cos2, 2, sum)
 contrib <- function(post.cos2, post.cc2){post.cos2*100/post.cc2}
 post.varc <- t(apply(post.cos2, 1, contrib, post.cc2))
-post.vcontrib <- head(post.varc[,1:6])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+post.vcontrib <- head(post.varc[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
 pre.vcontrib
 post.vcontrib
