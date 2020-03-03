@@ -143,21 +143,21 @@ post.bp
 #(1) First define categories as factors
 
 #--(1a) Pre categories
-pre.g.species <- as.factor(pre$species[1:470])
-pre.g.solar <- as.factor(pre$solar[1:470])
-pre.g.cat <- as.factor(pre$category[1:470])
-pre.g.cam <- as.factor(pre$camera[1:470])
-pre.g.traffic <- as.factor(pre$traffic[1:470])
-pre.g.dnc <- as.factor(pre$dnc[1:470])
+pre.g.species <- as.factor(pre$species[1:351])
+pre.g.solar <- as.factor(pre$solar[1:351])
+pre.g.cat <- as.factor(pre$category[1:351])
+pre.g.cam <- as.factor(pre$camera[1:351])
+pre.g.traffic <- as.factor(pre$traffic[1:351])
+pre.g.dnc <- as.factor(pre$dnc[1:351])
 
 
 #--(1b) Post categories
-post.g.species <- as.factor(post$species[1:655])
-post.g.solar <- as.factor(post$solar[1:655])
-post.g.cat <- as.factor(post$category[1:655])
-post.g.cam <- as.factor(post$camera[1:655])
-post.g.traffic <- as.factor(post$traffic[1:655])
-post.g.dnc <- as.factor(post$dnc[1:655])
+post.g.species <- as.factor(post$species[1:221])
+post.g.solar <- as.factor(post$solar[1:221])
+post.g.cat <- as.factor(post$category[1:221])
+post.g.cam <- as.factor(post$camera[1:221])
+post.g.traffic <- as.factor(post$traffic[1:221])
+post.g.dnc <- as.factor(post$dnc[1:221])
 
 #(2) Produce ellipses PCA graphs for every factor   
 
