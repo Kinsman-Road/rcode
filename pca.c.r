@@ -124,14 +124,14 @@ post.var
 
 #:::::Creating a biplot(combination of ind + var plots):::::
 pre.bp <- fviz_pca_biplot(pca.pre,
-                         col.ind = "#FC4E07",
-                         col.var = "#00AFBB",
+                         col.ind = "#fa995c",
+                         col.var = "#2f2091",
                          title = "Pre-Construction Biplot")
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
-                           col.ind = "#FC4E07",
-                           col.var = "#00AFBB",
+                           col.ind = "#fa995c",
+                           col.var = "#2f2091",
                            title = "Post-Construction Biplot")
 
 pre.bp
@@ -335,6 +335,10 @@ post.dnc <- fviz_pca_ind(pca.post,
                              check_overlap = T)
 
 #Generate Plots
+pre.scree
+pre.ind
+pre.var
+pre.bp
 pre.species
 pre.solar
 pre.cat
@@ -342,6 +346,11 @@ pre.cam
 pre.traffic
 pre.dnc
 
+
+post.scree
+post.ind
+post.var
+post.bp
 post.species
 post.solar
 post.cat
