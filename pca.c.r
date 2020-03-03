@@ -170,7 +170,11 @@ pre.species <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Pre-Construction: Species Groupings")
+                            title = "Pre-Construction: Species Groupings") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
 
 pre.solar <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.solar,
@@ -180,7 +184,11 @@ pre.solar <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Pre-Construction: Daylight Preference")
+                            title = "Pre-Construction: Daylight Preference") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
 
 pre.cat <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cat,
@@ -190,7 +198,12 @@ pre.cat <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Pre-Construction: Mammalian Groupings")
+                            title = "Pre-Construction: Mammalian Groupings") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
 
 pre.cam <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cam,
@@ -200,7 +213,12 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Pre-Construction: Camera Preference")
+                            title = "Pre-Construction: Camera Preference") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
 
 pre.traffic <- fviz_pca_ind(pca.pre,
                            col.ind = pre.g.traffic,
@@ -210,7 +228,12 @@ pre.traffic <- fviz_pca_ind(pca.pre,
                            legend.title = "Groups",
                            repel = TRUE,
                            label = "none",
-                           title = "Pre-Construction: SUMMER Traffic Preference")
+                           title = "Pre-Construction: SUMMER Traffic Preference") + 
+                  geom_text(
+                           label=pre$species, 
+                           nudge_x = 0.25, nudge_y = 0.25,
+                           check_overlap = T)
+
 
 pre.dnc <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.dnc,
@@ -220,7 +243,11 @@ pre.dnc <- fviz_pca_ind(pca.pre,
                             legend.title = "groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Pre-Construction: D/N/C Category")
+                            title = "Pre-Construction: D/N/C Category") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
 
 #--(2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
@@ -231,7 +258,11 @@ post.species <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Post-Construction: Species Groupings")
+                            title = "Post-Construction: Species Groupings") + 
+                   geom_text(
+                            label=post$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
 
 post.solar <- fviz_pca_ind(pca.post,
                           col.ind = post.g.solar,
@@ -241,7 +272,11 @@ post.solar <- fviz_pca_ind(pca.post,
                           legend.title = "Groups",
                           repel = TRUE,
                           label = "none",
-                          title = "Post-Construction: Daylight preference")
+                          title = "Post-Construction: Daylight preference") + 
+                 geom_text(
+                          label=post$species, 
+                          nudge_x = 0.25, nudge_y = 0.25,
+                          check_overlap = T)
 
 post.cat <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cat,
@@ -251,7 +286,11 @@ post.cat <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        title = "Post-Construction: Mammalian Groupings")
+                        title = "Post-Construction: Mammalian Groupings") + 
+               geom_text(
+                        label=post$species, 
+                        nudge_x = 0.25, nudge_y = 0.25,
+                        check_overlap = T)
 
 post.cam <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cam,
@@ -261,7 +300,11 @@ post.cam <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        title = "Post-Construction: Camera Preference")
+                        title = "Post-Construction: Camera Preference") + 
+               geom_text(
+                        label=post$species, 
+                        nudge_x = 0.25, nudge_y = 0.25,
+                        check_overlap = T)
 
 post.traffic <- fviz_pca_ind(pca.post,
                             col.ind = post.g.traffic,
@@ -271,7 +314,11 @@ post.traffic <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Post-Construction: SUMMER Traffic Preference")
+                            title = "Post-Construction: SUMMER Traffic Preference") + 
+                   geom_text(
+                            label=post$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
 
 post.dnc <- fviz_pca_ind(pca.post,
                              col.ind = post.g.dnc,
@@ -281,7 +328,11 @@ post.dnc <- fviz_pca_ind(pca.post,
                              legend.title = "Groups",
                              repel = TRUE,
                              label = "none",
-                             title = "Post-Construction: D/N/C Category")
+                             title = "Post-Construction: D/N/C Category") + 
+                    geom_text(
+                             label=post$species, 
+                             nudge_x = 0.25, nudge_y = 0.25,
+                             check_overlap = T)
 
 #Generate Plots
 pre.species
