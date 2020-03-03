@@ -91,14 +91,14 @@ post.scree
 #:::::Creating contribution plot for individual observations:::::
 pre.ind <- fviz_pca_ind(pca.pre,
                         col.ind = "cos2",   #maybe "contribution?"
-                        gradient.cols = c(),   #default R colors
+                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         label = "none",
                         title = "Pre-Construction Individual Plots")
 
 post.ind <- fviz_pca_ind(pca.post,
                         col.ind = "cos2",
-                        gradient.cols = c(),   #default R colors
+                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         label = "none",
                         title = "Post-Construction Individual Plots")
@@ -109,13 +109,13 @@ post.ind
 #:::::Creating contribution plot for variable contributions:::::
 pre.var <- fviz_pca_var(pca.pre,
                         col.var = "cos2",  #maybe "contribution?"
-                        gradient.cols = c(),   #default R colors
+                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         title = "Pre-Construction Variable Contribution")
 
 post.var <- fviz_pca_var(pca.post,
                          col.var = "cos2",  #maybe "contribution?"
-                         gradient.cols = c(),   #default R colors
+                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                          repel = TRUE,
                          title = "Post-Construction Variable Contribution")
 
@@ -124,14 +124,14 @@ post.var
 
 #:::::Creating a biplot(combination of ind + var plots):::::
 pre.bp <- fviz_pca_biplot(pca.pre,
-                         col.ind = "#E7B800",
-                         col.var = "#FC4E07",
+                         col.ind = "#FC4E07",
+                         col.var = "#00AFBB",
                          title = "Pre-Construction Biplot")
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
-                           col.ind = "#E7B800",
-                           col.var = "#FC4E07",
+                           col.ind = "#FC4E07",
+                           col.var = "#00AFBB",
                            title = "Post-Construction Biplot")
 
 pre.bp
