@@ -126,13 +126,19 @@ post.var
 pre.bp <- fviz_pca_biplot(pca.pre,
                          col.ind = "#fa995c",
                          col.var = "#2f2091",
-                         title = "Pre-Construction Biplot")
+                         label = "var",
+                         repel = TRUE,
+                         title = "Pre-Construction Biplot") 
+#+ geom_text(label=pre$species, nudge_x = 0.25, nudge_y = 0.25, check_overlap = T)
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
                            col.ind = "#fa995c",
                            col.var = "#2f2091",
+                           label = "var",
+                           repel = TRUE,
                            title = "Post-Construction Biplot")
+#+ geom_text(label=pre$species, nudge_x = 0.25, nudge_y = 0.25, check_overlap = T)
 
 pre.bp
 post.bp

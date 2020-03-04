@@ -118,14 +118,18 @@ post.var
 
 #:::::Creating a biplot(combination of ind + var plots):::::
 pre.bp <- fviz_pca_biplot(pca.pre,
-                         col.ind = "#fa995c",
-                         col.var = "#2f2091",
+                          col.ind = "#fa995c",
+                          col.var = "#2f2091",
+                          label = "var",
+                          repel = TRUE,
                          title = "Pre-Construction Biplot")
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
                            col.ind = "#fa995c",
                            col.var = "#2f2091",
+                           label = "var",
+                           repel = TRUE,
                            title = "Post-Construction Biplot")
 
 pre.bp
