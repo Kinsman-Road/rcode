@@ -32,8 +32,14 @@ dm.d <- d.day %>%
 d.m <- data.frame(hour = rep(0:23, each = 1), rbind(dm.m))
 d.d <- data.frame(hour = rep(0:23, each = 1), rbind(dm.d))
 
+# Use Factor() to change the order
+d.m$text <- factor(d.m$text, levels = c("Weekday","Weekend","Overall"))
+d.d$text <- factor(d.d$text, levels = c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"))
 
-#Generate Plots
+
+# Generate Plots
+par(mfrow=c(2,4))
+
 p.mean <- ggplot(d.m, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis(discrete = T, option = "E") +
