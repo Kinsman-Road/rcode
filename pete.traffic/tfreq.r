@@ -1,4 +1,4 @@
-#Library
+#Initialization
 library(readxl)
 library(ggplot2)
 library(hrbrthemes)
@@ -7,8 +7,14 @@ library(purrr)
 library(tidyverse)
 
 
+#If need, load fonts from extrafont into windows
+#library(extrafont)
+#font_import()
+#loadfonts(device = "win")
+
+
 #Import Dataset
-d.e <- data.frame(read_excel("pete.traffic/trafficdata.xlsx"))
+d.e <- data.frame(read_excel("pete.traffic/tdata.xlsx"))
 
 d.mean <- d.e[c(8:10)]     #For mean aggregates
 d.day <- d.e[c(1:7)]       #For each individual day
