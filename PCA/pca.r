@@ -5,8 +5,8 @@
 
 #:::::  Import  :::::
 library(readxl)
-pre <- read_excel("pca.xlsx", sheet = "pca.pre")
-post <- read_excel("pca.xlsx", sheet = "pca.post")
+pre <- read_excel("PCA/pca.xlsx", sheet = "pca.pre")
+post <- read_excel("PCA/pca.xlsx", sheet = "pca.post")
 
 
 #:::::  Preparing datasets as data frames  :::::
