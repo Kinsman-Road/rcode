@@ -7,7 +7,7 @@ library(purrr)
 library(tidyverse)
 
 
-#If need, load fonts from extrafont into windows
+#::: If needed, load fonts from extrafont into windows. This takes ~5 minutes
 #library(extrafont)
 #font_import()
 #loadfonts(device = "win")
