@@ -4,27 +4,37 @@ author: "Pete Pham"
 date: "March 8, 2020"
 output: pdf_document
 ---
+# Principal Components Analysis
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+This is the appendix of principal components analysis plot output. This section is organized as follows:
 
-## R Markdown
+- Coordinates, Quality of Representation, and Contributions
+- Individual Plots, Variable Plots, and Biplot graphs
+- Individual Plots with Overlaid Categorical Ellipses
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Coordinates, Quality of Representation, and Contributions
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
+# Scree Plots, Individual Plots, Variable Plots, and Biplots
 
-## Including Plots
+![](PCA Select Plots/Pre.Scree.png)![](PCA Select Plots/Post.Scree.png)
 
-You can also embed plots, for example:
+![](PCA Select Plots/Pre.Ind.png)![](PCA Select Plots/Post.Ind.png)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+![](PCA Select Plots/Pre.Var.png)![](PCA Select Plots/Post.Var.png)
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+![](PCA Select Plots/Pre.Biplot.png)![](PCA Select Plots/Post.Biplot.png)
+
+# Individual Plots with Overlaid Categorical Ellipses
+
+![](PCA Select Plots/Pre.Species.png)![](PCA Select Plots/Post.Species.png)
+
+![](PCA Select Plots/Pre.Solar.png)![](PCA Select Plots/Post.Solar.png)
+
+![](PCA Select Plots/Pre.MCat.png)![](PCA Select Plots/Post.MCat.png)
+
+![](PCA Select Plots/Pre.Cam.png)![](PCA Select Plots/Post.Cam.png)
+
+![](PCA Select Plots/Pre.Traffic.png)![](PCA Select Plots/Post.Traffic.png)
+
+![](PCA Select Plots/Pre.DNC.png)![](PCA Select Plots/Post.DNC.png)
