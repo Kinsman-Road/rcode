@@ -64,12 +64,12 @@ post.cos2    #table of contribution to each dimension
 pre.cc2 <- apply(pre.cos2, 2, sum)
 contrib <- function(pre.cos2, pre.cc2){pre.cos2*100/pre.cc2}
 pre.varc <- t(apply(pre.cos2, 1, contrib, pre.cc2))
-pre.vcontrib <- head(pre.varc[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+pre.vcontrib <- head(pre.varc[,1:7])   #1:7 number of dimensions/eigenvectors to choose
 
 post.cc2 <- apply(post.cos2, 2, sum)
 contrib <- function(post.cos2, post.cc2){post.cos2*100/post.cc2}
 post.varc <- t(apply(post.cos2, 1, contrib, post.cc2))
-post.vcontrib <- head(post.varc[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
+post.vcontrib <- head(post.varc[,1:7])   #1:7 number of dimensions/eigenvectors to choose
 
 pre.vcontrib
 post.vcontrib
