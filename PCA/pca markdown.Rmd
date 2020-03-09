@@ -2,7 +2,6 @@
 title: "Appendix: Principle Components Analysis (PCA)"
 output: pdf_document
 ---
-
 # Principle Components Analysis
 
 This is the appendix of principle components analysis plot output. This section is organized as follows:
@@ -19,10 +18,65 @@ This is the appendix of principle components analysis plot output. This section 
 
 Three types of tables are calculated in order to derive the points for plot generation. These are:
 
-- Loadings
-- Quality of Represenation
-- Contribution 
+- __Coordinates__ - The coordinates of each variable that are used to create a scatter plot. Note, there are seven values for each variable, meaning we can plot them into seven dimensions. For ease of interpretation, we will limit ourselves to just two dimensions.
+- __Quality of Represenation__ - This is the square of the coordinate of each variable. This number is the sum of square distance of the observation when the original data point is projected onto a component.
+- __Contribution__ - For each relative principal component, this is a variable's percent contribution to that specific dimension.
 
+### _PCA Coordinates_
+```{r echo = FALSE, results = "asis", message = FALSE}
+library(readxl)
+library(factoextra)
+library(FactoMineR)
+library(knitr)
+pre <- read_excel("pca.xlsx", sheet = "pca.pre.c")
+post <- read_excel("pca.xlsx", sheet = "pca.post.c")
+pre <- data.frame(pre)
+post <- data.frame(post)
+pre.n <- pre[1:7]
+post.n <- post[1:7]
+pca.pre <- prcomp(pre.n, scale = TRUE)
+pca.post <- prcomp(post.n, scale = TRUE)
+pre.eig <- get_eigenvalue(pca.pre)
+post.eig <- get_eigenvalue(pca.post)
+pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
+pre.load <- pca.pre$rotation
+pre.sdev <- pca.pre$sdev
+pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
+pre.vc <- head(pre.vcoord[,1:7])
+post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
+post.load <- pca.post$rotation
+post.sdev <- pca.post$sdev
+post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
+post.vc <- head(post.vcoord[,1:7])
+kable(pre.vc[1:6,1:7], caption = "Pre-Construction Variable Coordinates")
+kable(post.vc[1:6,1:7], caption = "Post-Construction Variable Coordinates")
+```
+
+\newpage
+# Numerical Tables for Plot Generation (Continued)
+### _Variable Quality of Representation_
+
+```{r echo = FALSE, results = "asis", message = FALSE}
+pre.cos2 <- pre.vcoord^2
+post.cos2 <- post.vcoord^2
+kable(pre.cos2[1:6,1:7], caption = "Pre-Construction Variable Quality of Representation")
+kable(post.cos2[1:6,1:7], caption = "Post-Construction Variable Quality of Representation")
+```
+
+### _Variable Contribution_
+
+```{r echo = FALSE, results = "asis", message = FALSE}
+pre.cc2 <- apply(pre.cos2, 2, sum)
+contrib <- function(pre.cos2, pre.cc2){pre.cos2*100/pre.cc2}
+pre.varc <- t(apply(pre.cos2, 1, contrib, pre.cc2))
+pre.vcontrib <- head(pre.varc[,1:7])
+post.cc2 <- apply(post.cos2, 2, sum)
+contrib <- function(post.cos2, post.cc2){post.cos2*100/post.cc2}
+post.varc <- t(apply(post.cos2, 1, contrib, post.cc2))
+post.vcontrib <- head(post.varc[,1:7])
+kable(pre.vcontrib[1:6,1:7], caption = "Pre-Construction Variable Dimension Contribution (%)")
+kable(post.vcontrib[1:6,1:7], caption = "Post-Construction Variable Dimension Contribution (%)")
+```
 
 \newpage
 # Scree Plots
@@ -32,30 +86,29 @@ As seen above, the scree plots for both pre and post-construction show many prin
 
 The following plots will only be shown in two dimensions for ease of interpretation. For three-dimensional principle components plots, please refer to the R-code at the end of this section.
 
-\newpage
 # Principal Components Individual Plots
-
 ![](PCA Select Plots/Pre.Ind.png)![](PCA Select Plots/Post.Ind.png)
 
 These are the principle components individual contribution plots. The color indicates greater contribution to the dimensions in question. In this case, red means that an individual observation contributes a greater percentage of variation to a particular dimension. Conversely, the turqoise coloring indicates that a particular observation does not contribute much at all.
 
+\newpage
 # Principal Components Variable Plots
 ![](PCA Select Plots/Pre.Var.png)![](PCA Select Plots/Post.Var.png)
 
-Similar to the indivual contribution plots above, these variable plots measure only the contribution that each collected category has to each other. Arrows that point away from each other indicate non-correlated predicates. The converse is also true is that arrows pointing in similar directions are more closely correlated. The color scheme here is the same as it was above. It can noted here that precipitation and month are highly correlated. This makes sense give that seasonal changes in the year are related to the weather, in this case precipitation. Additionally, we see strong correlation between daily minimum and maximum temperature. Again, this is not surprising as we expect to see fairly consist differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expect. However, the correlation between temperature and count is not as intuitive and requires further examination.
+Similar to the individual contribution plots above, these variable plots measure only the contribution that each collected category has to each other. Arrows that point away from each other indicate non-correlated predicates. Arrows that point in the same direction are more correlated with each other.
+
+In this particular case, we note that precipitation and month are highly correlated. This makes sense give that seasonal changes in the year are related to the weather. Additionally, we see strong correlation between daily minimum and maximum temperature. Again, this is not surprising as we expect to see fairly consist differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expected.
 
 # Principal Components Biplots
 ![](PCA Select Plots/Pre.Biplot.png)![](PCA Select Plots/Post.Biplot.png)
 
 These two biplots overlay the indivudal observcations ontop of the variable contributions for a singular plot. This provides a succinct way to quickly view how the observations may group according to the variables.
 
-
-
-
-
 # Individual Plots with Overlaid Categorical Ellipses
 
-The following plots show the relative grouping of several categorical variables onto the individual principle components plot. Each generated ellipse has a center that is the mean of all relative points. For example, in the 'Pre-Construction: Species Groupings' plot, we see that deer and coyote have overlapping ellipses. This is useful for a snap shot of how the species interact. Upon closer examination, we see more dense groupings of deer and coyotes that are further away from each other. It's clear that outliers pull the ellipses closer together, but note that majority of the coyote and deet are not particularly similar.
+The following plots show the relative grouping of several categorical variables onto the individual principle components plot. Each generated ellipse has a center that is the mean of all relative points. For example, in the 'Pre-Construction: Species Groupings' plot, we see that deer and coyote have overlapping ellipses. 
+
+This is useful for a snap shot of how the species interact. Upon closer examination, we see more dense groupings of deer and coyotes that are further away from each other. It's clear that outliers pull the ellipses closer together, but note that majority of the coyote and deet are not particularly similar.
 
 Each page will have pre-construction and post-construction plots adjacent to each other. Please note that due to variation in sampling methodology, direct comparison is be to approach with a degree of skepticism.
 
