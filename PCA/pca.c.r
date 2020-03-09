@@ -252,7 +252,7 @@ pre.dnc <- fviz_pca_ind(pca.pre,
                             palette = c(""),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "groups",
+                            legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
                             title = "Pre-Construction: D/N/C Category") + 

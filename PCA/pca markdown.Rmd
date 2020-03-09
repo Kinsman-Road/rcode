@@ -82,7 +82,7 @@ kable(post.vcontrib[1:6,1:7], caption = "Post-Construction Variable Dimension Co
 # Scree Plots
 ![](PCA Select Plots/Pre.Scree.png)![](PCA Select Plots/Post.Scree.png)
 
-As seen above, the scree plots for both pre and post-construction show many principle dimensions. This is unideal as we cannot readily visualize k=4 or k=6 on a two-dimensional plane. Although there exists a fair amount of noise is our dataset, we can still utilize the next prinicple components analysis steps to visualize variance clustering, albiet only in two-dimensions. 
+As seen above, the scree plots for both pre and post-construction show many principle dimensions. This is not ideal as we cannot readily visualize k=4 or k=6 on a two-dimensional plane. Although there will exist a fair amount of noise in our dataset, we can still utilize PCA to visualize variance clustering.
 
 The following plots will only be shown in two dimensions for ease of interpretation. For three-dimensional principle components plots, please refer to the R-code at the end of this section.
 
@@ -95,24 +95,24 @@ These are the principle components individual contribution plots. The color indi
 # Principal Components Variable Plots
 ![](PCA Select Plots/Pre.Var.png)![](PCA Select Plots/Post.Var.png)
 
-Similar to the individual contribution plots above, these variable plots measure only the contribution that each collected category has to each other. Arrows that point away from each other indicate non-correlated predicates. Arrows that point in the same direction are more correlated with each other.
+Similar to the individual contribution plots above, these variable plots measure only the contribution that each collected variable provides relative to each other. Arrows that point away from each other indicate non-correlated data. Arrows that point in the same direction indicate more correlated data.
 
-In this particular case, we note that precipitation and month are highly correlated. This makes sense give that seasonal changes in the year are related to the weather. Additionally, we see strong correlation between daily minimum and maximum temperature. Again, this is not surprising as we expect to see fairly consist differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expected.
+In this particular case, we note that precipitation and month are closely correlated. This makes sense give that precipitation amounts are often seasonal and go hand-in-hand with months. Additionally, we see strong correlation between daily minimum and maximum temperature. This is not surprising as we expect to see fairly consistent differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expected.
 
 # Principal Components Biplots
 ![](PCA Select Plots/Pre.Biplot.png)![](PCA Select Plots/Post.Biplot.png)
 
-These two biplots overlay the indivudal observcations ontop of the variable contributions for a singular plot. This provides a succinct way to quickly view how the observations may group according to the variables.
+These two biplots overlay variable contributions on top of the indivudal observations into a singular plot. This provides a succinct method to quickly evaluate how each observation corresponds with each variable.
 
 # Individual Plots with Overlaid Categorical Ellipses
 
-The following plots show the relative grouping of several categorical variables onto the individual principle components plot. Each generated ellipse has a center that is the mean of all relative points. For example, in the 'Pre-Construction: Species Groupings' plot, we see that deer and coyote have overlapping ellipses. 
+The following plots show the relative grouping the several categorical variables onto the individual principle components plot. Each plot will have an ellipses generated on top of a pre or post-construction individiual pca plot. Each generated ellipse has a center that is the mean of all relative points. 
 
-This is useful for a snap shot of how the species interact. Upon closer examination, we see more dense groupings of deer and coyotes that are further away from each other. It's clear that outliers pull the ellipses closer together, but note that majority of the coyote and deet are not particularly similar.
+For example, in the 'Pre-Construction: Species Groupings' plot, we see that deer and coyote have overlapping ellipses. This is useful for a snap shot of how the species interact. Upon closer examination, we see more dense groupings of deer and coyotes that are further away from each other. The means of the ellipsis are sensitive outliers and further examination of the data points would be prudent before finalizing any conclusions.
 
-Each page will have pre-construction and post-construction plots adjacent to each other. Please note that due to variation in sampling methodology, direct comparison is be to approach with a degree of skepticism.
+Each page will have pre-construction and post-construction plots adjacent to each other. Please note that due to variation in sampling methodology, any changes due to the road construction cannot be reliably determined. In that light, they can serve to highlight how the activity of the populations in the two datasets behave.
 
-The plots are in this order:
+The categorical plots are generated in this order:
 
 - Species Groupings
 - Mammlian Groupings
@@ -121,7 +121,7 @@ The plots are in this order:
 
 \newpage
 ### _Categorical Plots: Species_
-The individual plots, below, show how each species interacts with each other. This could provide a useful framework to approach future culvert design to better improve usability for specific groups instead of specific species. Generally speaking, we can see that deer and coyote form two distinct groups. Additionally, we see that deer mice and coyote are simiarly grouped. This could suggest a predator-prey relationship as well as behavior due to size and culvert usage.
+The plots, below, show how each species interacts with each other. This could provide a useful framework to approach future culvert design to better improve usability for specific groups instead of specific species. Generally speaking, we can see that deer and coyote form two of the larger, more distinct groups. Additionally, we see that deer mice and coyote are simiarly grouped. This specific interaction could suggest a predator-prey relationship as well as culvert preference due to their smaller size.
 
 ![](PCA Select Plots/Pre.Species.png)
 
@@ -129,7 +129,7 @@ The individual plots, below, show how each species interacts with each other. Th
 
 \newpage
 ### _Categorical Plots: Mammalian Groups_
-Simiar to the species plots above, we broaden our scope of definition and sort our counts by mammalian group. Each species observation is still noted, but the colors here refer to the key seen on the right-hand side of the plots. Pre-construction shows a clear grouping of deer while every other mammalian group are more similar to each other. In post-construction, we see the variation start to move closer. This could indicate the presence of a funneling effect.
+Simiar to the species plots above, we broaden our scope of definition and sort our species counts by mammalian groups. Each species observation is still noted, but the colors here refer to the key seen on the right-hand side of the plots. Pre-construction shows a clear grouping of deer while every other mammalian group are more similar to each other. In post-construction, we see the variations between the groups are more clustered together. This could indicate that the culverts presents a funneling effect.
 
 ![](PCA Select Plots/Pre.MCat.png)
 
@@ -137,7 +137,7 @@ Simiar to the species plots above, we broaden our scope of definition and sort o
 
 \newpage
 ### _Categorical Plots: Crepuscular/Nocturnal_
-Here, we can further our scope from mammalian group, into only hours of activity. There are two groups - crepuscular and nocturnal. Crepuscular animals are more active during the evening and dawn hours while nocturnal animals are more active during nighttime hours. In pre-construction, we see two distinct grouping - as is expected. These groupings still exist in post-construction, yet the variability is more evenly mixed. If these two groups are merging, then it could suppport the notion that the road crossing provide funneling effects.
+Here, we can further our scope from mammalian groups into specific hourly activity preference that species are known for. There are two groups - crepuscular and nocturnal. Crepuscular animals are more active during the dawn and evening hours while nocturnal animals are more active during night time hours. In pre-construction, we see the two categories are distinctly grouped - as is expected. These groupings still exist in post-construction, yet the variability is more evenly mixed and centered. If these two groups are merging, then it could further suppport the notion that the culverts present a funneling effect.
 
 ![](PCA Select Plots/Pre.DNC.png)
 
@@ -145,7 +145,11 @@ Here, we can further our scope from mammalian group, into only hours of activity
 
 \newpage
 ### _Categorical Plots: Traffic_
-When overlaid with recent traffic onto our historical data, we can see some relationship with the presence of traffic. Pre-construction shows that deer have almost no traffic preference and will be present regardless of automobile activity. The converse is true for the other species. In post-construction, we see a similar trend. However, it seems that only coyotes have this preference for traffic while every other species does not seem effected. The datasets used for this are severely mismatched and the results here should only be used to encourage addtional study with standardized sampling methods.
+When overlaid with recent traffic data onto our historical data, we can see some relationship with the presence of traffic. Pre-construction shows that only deer have almost no traffic preference and will be present regardless of activity. In post-construction, we see a similar trend. However, it seems that only coyotes have a strong preference for traffic while every other species does not seem affected. 
+
+It should strongly noted that the datasets used for the traffic analysis are severely mismatched. The observational data sets are from the year 2015-2016 and 2018-2019 while the traffic data is from 2020 and in a location that is due approximately 300 meters due north at Boeckman Road. It could be assumed that populations that access the Boeckman Road and Kinsman Road crossings are the same populations. However, there is no empirical basis for this assumption. 
+
+The results here should only be used to encourage the need for additional study with improved sampling methods.
 
 ![](PCA Select Plots/Pre.Traffic.png)
 
