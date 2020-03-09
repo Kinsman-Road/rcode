@@ -3,19 +3,14 @@
 #http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/
 #https://www.climate.gov/maps-data/dataset/past-weather-zip-code-data-table
 
-
-
 #::::: [CONDENSED PCA RUN WITH SELECT SPEICES] :::::
 
-
-
-#:::::  Import  :::::
+# Import data set from github
 library(readxl)
 pre <- read_excel("PCA/pca.xlsx", sheet = "pca.pre.c")
 post <- read_excel("PCA/pca.xlsx", sheet = "pca.post.c")
 
-
-#:::::  Preparing datasets as data frames  :::::
+# Prepare dataframes
 pre <- data.frame(pre)
 post <- data.frame(post)
 
@@ -23,8 +18,7 @@ pre.n <- pre[1:7]      #create dataframes with only numerical columns from pre
 post.n <- post[1:7]    #create dataframes with only numerical columns from post
 
 
-
-#:::::PCA:::::
+# Performing principal components analysis
 library(factoextra)
 library(FactoMineR)
 
@@ -36,17 +30,17 @@ post.eig <- get_eigenvalue(pca.post)
 
 
 
-#::::: PCA Coordinates :::::
-#These are what is driving the direction of the plots below
+# Calculate PCA coordinates
+# These are what is driving the direction of the plots below
 
-#Pre-Construction PCA Coordinates
+# Pre-Construction PCA Coordinates
 pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
 pre.load <- pca.pre$rotation
 pre.sdev <- pca.pre$sdev
 pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
 pre.vc <- head(pre.vcoord[,1:7])   #1:8 just refers to the number of dimensions/eigenvectors to choose
 
-#Post-Construction PCA Coordinates
+# Post-Construction PCA Coordinates
 post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
 post.load <- pca.post$rotation
 post.sdev <- pca.post$sdev
@@ -57,7 +51,7 @@ pre.vc       #table of pre pca coords
 post.vc      #table of post pca coords
 
 
-#:::::PCA cos2:::::
+# PCA Qualtity of Representation
 pre.cos2 <- pre.vcoord^2
 post.cos2 <- post.vcoord^2
 
@@ -66,7 +60,7 @@ post.cos2    #table of contribution to each dimension
 
 
 
-#:::::PCA Contributions to Each Given Component:::::
+# PCA Contributions to Each Given Component
 pre.cc2 <- apply(pre.cos2, 2, sum)
 contrib <- function(pre.cos2, pre.cc2){pre.cos2*100/pre.cc2}
 pre.varc <- t(apply(pre.cos2, 1, contrib, pre.cc2))
@@ -81,74 +75,86 @@ pre.vcontrib
 post.vcontrib
 
 
-#:::::Creating a scree plot:::::
-pre.scree <- fviz_eig(pca.pre)
-post.scree <- fviz_eig(pca.post)
+# Creating a scree plot to determine principal dimensions of interest
+pre.scree <- fviz_eig(pca.pre,
+                      title = "Pre-Construction Scree Plot")
+post.scree <- fviz_eig(pca.post,
+                       title = "Post-Construction Scree Plot")
 
 pre.scree
 post.scree
 
-#:::::Creating contribution plot for individual observations:::::
+# Creating contribution plot for individual observations
 pre.ind <- fviz_pca_ind(pca.pre,
-                        col.ind = "cos2",   #maybe "contribution?"
+                        col.ind = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         label = "none",
-                        title = "Pre-Construction Individual Plots")
+                        title = "Pre-Construction Individual Plot")
 
 post.ind <- fviz_pca_ind(pca.post,
                         col.ind = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         label = "none",
-                        title = "Post-Construction Individual Plots")
+                        title = "Post-Construction Individual Plot")
 
 pre.ind
 post.ind
 
-#:::::Creating contribution plot for variable contributions:::::
+# Creating contribution plot for variable contributions
 pre.var <- fviz_pca_var(pca.pre,
-                        col.var = "cos2",  #maybe "contribution?"
+                        col.var = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
-                        title = "Pre-Construction Variable Contribution")
+                        title = "Pre-Construction Variable Plot")
 
 post.var <- fviz_pca_var(pca.post,
-                         col.var = "cos2",  #maybe "contribution?"
+                         col.var = "cos2",
                          gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                          repel = TRUE,
-                         title = "Post-Construction Variable Contribution")
+                         title = "Post-Construction Variable Plot")
 
 pre.var
 post.var
 
-#:::::Creating a biplot(combination of ind + var plots):::::
+# Creating a biplot(combination of ind + var plots)
 pre.bp <- fviz_pca_biplot(pca.pre,
-                         col.ind = "#fa995c",
+                         col.ind = "coral",
                          col.var = "#2f2091",
                          label = "var",
                          repel = TRUE,
-                         title = "Pre-Construction Biplot") 
-#+ geom_text(label=pre$species, nudge_x = 0.25, nudge_y = 0.25, check_overlap = T)
+                         title = "Pre-Construction Biplot")
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
-                           col.ind = "#fa995c",
+                           col.ind = "cadetblue3",
                            col.var = "#2f2091",
                            label = "var",
                            repel = TRUE,
                            title = "Post-Construction Biplot")
-#+ geom_text(label=pre$species, nudge_x = 0.25, nudge_y = 0.25, check_overlap = T)
 
 pre.bp
 post.bp
 
-                           
-                                     
-#:::::Creating an individual PCA plot with ellipses for categories:::::
-#(1) First define categories as factors
+# Creating 3D Observation Plots 
+library(pca3d)
 
-#--(1a) Pre categories
+
+pre3d.species <- pca3d(pca.pre, group=pre$species)
+pre3d.mcat <- pca3d(pca.pre, group=pre$category)
+pre3d.dnc <- pca3d(pca.pre, group=pre$dnc)
+pre3d.traffic <- pca3d(pca.pre, group=pre$traffic)
+
+post3d.species <- pca3d(pca.post, group=post$species)
+post3d.mcat <- pca3d(pca.post, group=post$category)
+post3d.dnc <- pca3d(pca.post, group=post$dnc)
+post3d.traffic <- pca3d(pca.post, group=post$traffic)
+                                     
+# Creating an individual PCA plot with ellipses for categories
+# (1) First define categories as factors
+
+# (1a) Pre categories
 pre.g.species <- as.factor(pre$species[1:351])
 pre.g.solar <- as.factor(pre$solar[1:351])
 pre.g.cat <- as.factor(pre$category[1:351])
@@ -157,7 +163,7 @@ pre.g.traffic <- as.factor(pre$traffic[1:351])
 pre.g.dnc <- as.factor(pre$dnc[1:351])
 
 
-#--(1b) Post categories
+# (1b) Post categories
 post.g.species <- as.factor(post$species[1:221])
 post.g.solar <- as.factor(post$solar[1:221])
 post.g.cat <- as.factor(post$category[1:221])
@@ -165,9 +171,9 @@ post.g.cam <- as.factor(post$camera[1:221])
 post.g.traffic <- as.factor(post$traffic[1:221])
 post.g.dnc <- as.factor(post$dnc[1:221])
 
-#(2) Produce ellipses PCA graphs for every factor   
+# (2) Produce ellipses PCA graphs for every factor   
 
-#--(2a) Pre-Construction Ellipses PCA categories
+# (2a) Pre-Construction Ellipses PCA categories
 pre.species <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.species,
                             palette = c( ),
@@ -234,7 +240,7 @@ pre.traffic <- fviz_pca_ind(pca.pre,
                            legend.title = "Groups",
                            repel = TRUE,
                            label = "none",
-                           title = "Pre-Construction: SUMMER Traffic Preference") + 
+                           title = "Pre-Construction: Traffic Preference") + 
                   geom_text(
                            label=pre$species, 
                            nudge_x = 0.25, nudge_y = 0.25,
@@ -255,7 +261,7 @@ pre.dnc <- fviz_pca_ind(pca.pre,
                             nudge_x = 0.25, nudge_y = 0.25,
                             check_overlap = T)
 
-#--(2b) Post-Construction Ellipses PCA categories
+# (2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
                             col.ind = post.g.species,
                             palette = c( ),
@@ -320,7 +326,7 @@ post.traffic <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Post-Construction: SUMMER Traffic Preference") + 
+                            title = "Post-Construction: Traffic Preference") + 
                    geom_text(
                             label=post$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -340,7 +346,7 @@ post.dnc <- fviz_pca_ind(pca.post,
                              nudge_x = 0.25, nudge_y = 0.25,
                              check_overlap = T)
 
-#Generate Plots
+# Generate Plots
 pre.scree
 pre.ind
 pre.var

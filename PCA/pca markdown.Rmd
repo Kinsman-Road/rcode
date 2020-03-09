@@ -1,40 +1,478 @@
 ---
-title: "Kinsman Principal Components Analysis"
-author: "Pete Pham"
-date: "March 8, 2020"
+title: "Appendix: Principle Components Analysis (PCA)"
 output: pdf_document
 ---
-# Principal Components Analysis
 
-This is the appendix of principal components analysis plot output. This section is organized as follows:
+# Principle Components Analysis
 
-- Coordinates, Quality of Representation, and Contributions
-- Individual Plots, Variable Plots, and Biplot graphs
+This is the appendix of principle components analysis plot output. This section is organized as follows:
+
+- Numerical Tables for Plot Generation
+- Scree Plots
+- Individual Plots
+- Variable Plots
+- Biplot graphs
 - Individual Plots with Overlaid Categorical Ellipses
+- R Code
 
-# Coordinates, Quality of Representation, and Contributions
+# Numerical Tables for Plot Generation
+
+Three types of tables are calculated in order to derive the points for plot generation. These are:
+
+- Loadings
+- Quality of Represenation
+- Contribution 
 
 
-# Scree Plots, Individual Plots, Variable Plots, and Biplots
-
+\newpage
+# Scree Plots
 ![](PCA Select Plots/Pre.Scree.png)![](PCA Select Plots/Post.Scree.png)
+
+As seen above, the scree plots for both pre and post-construction show many principle dimensions. This is unideal as we cannot readily visualize k=4 or k=6 on a two-dimensional plane. Although there exists a fair amount of noise is our dataset, we can still utilize the next prinicple components analysis steps to visualize variance clustering, albiet only in two-dimensions. 
+
+The following plots will only be shown in two dimensions for ease of interpretation. For three-dimensional principle components plots, please refer to the R-code at the end of this section.
+
+\newpage
+# Principal Components Individual Plots
 
 ![](PCA Select Plots/Pre.Ind.png)![](PCA Select Plots/Post.Ind.png)
 
+These are the principle components individual contribution plots. The color indicates greater contribution to the dimensions in question. In this case, red means that an individual observation contributes a greater percentage of variation to a particular dimension. Conversely, the turqoise coloring indicates that a particular observation does not contribute much at all.
+
+# Principal Components Variable Plots
 ![](PCA Select Plots/Pre.Var.png)![](PCA Select Plots/Post.Var.png)
 
+Similar to the indivual contribution plots above, these variable plots measure only the contribution that each collected category has to each other. Arrows that point away from each other indicate non-correlated predicates. The converse is also true is that arrows pointing in similar directions are more closely correlated. The color scheme here is the same as it was above. It can noted here that precipitation and month are highly correlated. This makes sense give that seasonal changes in the year are related to the weather, in this case precipitation. Additionally, we see strong correlation between daily minimum and maximum temperature. Again, this is not surprising as we expect to see fairly consist differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expect. However, the correlation between temperature and count is not as intuitive and requires further examination.
+
+# Principal Components Biplots
 ![](PCA Select Plots/Pre.Biplot.png)![](PCA Select Plots/Post.Biplot.png)
+
+These two biplots overlay the indivudal observcations ontop of the variable contributions for a singular plot. This provides a succinct way to quickly view how the observations may group according to the variables.
+
+
+
+
 
 # Individual Plots with Overlaid Categorical Ellipses
 
-![](PCA Select Plots/Pre.Species.png)![](PCA Select Plots/Post.Species.png)
+The following plots show the relative grouping of several categorical variables onto the individual principle components plot. Each generated ellipse has a center that is the mean of all relative points. For example, in the 'Pre-Construction: Species Groupings' plot, we see that deer and coyote have overlapping ellipses. This is useful for a snap shot of how the species interact. Upon closer examination, we see more dense groupings of deer and coyotes that are further away from each other. It's clear that outliers pull the ellipses closer together, but note that majority of the coyote and deet are not particularly similar.
 
-![](PCA Select Plots/Pre.Solar.png)![](PCA Select Plots/Post.Solar.png)
+Each page will have pre-construction and post-construction plots adjacent to each other. Please note that due to variation in sampling methodology, direct comparison is be to approach with a degree of skepticism.
 
-![](PCA Select Plots/Pre.MCat.png)![](PCA Select Plots/Post.MCat.png)
+The plots are in this order:
 
-![](PCA Select Plots/Pre.Cam.png)![](PCA Select Plots/Post.Cam.png)
+- Species Groupings
+- Mammlian Groupings
+- Crepuscular/Nocturnal Groupings
+- Traffic Preference
 
-![](PCA Select Plots/Pre.Traffic.png)![](PCA Select Plots/Post.Traffic.png)
+\newpage
+### _Categorical Plots: Species_
+The individual plots, below, show how each species interacts with each other. This could provide a useful framework to approach future culvert design to better improve usability for specific groups instead of specific species. Generally speaking, we can see that deer and coyote form two distinct groups. Additionally, we see that deer mice and coyote are simiarly grouped. This could suggest a predator-prey relationship as well as behavior due to size and culvert usage.
 
-![](PCA Select Plots/Pre.DNC.png)![](PCA Select Plots/Post.DNC.png)
+![](PCA Select Plots/Pre.Species.png)
+
+![](PCA Select Plots/Post.Species.png)
+
+\newpage
+### _Categorical Plots: Mammalian Groups_
+Simiar to the species plots above, we broaden our scope of definition and sort our counts by mammalian group. Each species observation is still noted, but the colors here refer to the key seen on the right-hand side of the plots. Pre-construction shows a clear grouping of deer while every other mammalian group are more similar to each other. In post-construction, we see the variation start to move closer. This could indicate the presence of a funneling effect.
+
+![](PCA Select Plots/Pre.MCat.png)
+
+![](PCA Select Plots/Post.MCat.png)
+
+\newpage
+### _Categorical Plots: Crepuscular/Nocturnal_
+Here, we can further our scope from mammalian group, into only hours of activity. There are two groups - crepuscular and nocturnal. Crepuscular animals are more active during the evening and dawn hours while nocturnal animals are more active during nighttime hours. In pre-construction, we see two distinct grouping - as is expected. These groupings still exist in post-construction, yet the variability is more evenly mixed. If these two groups are merging, then it could suppport the notion that the road crossing provide funneling effects.
+
+![](PCA Select Plots/Pre.DNC.png)
+
+![](PCA Select Plots/Post.DNC.png)
+
+\newpage
+### _Categorical Plots: Traffic_
+When overlaid with recent traffic onto our historical data, we can see some relationship with the presence of traffic. Pre-construction shows that deer have almost no traffic preference and will be present regardless of automobile activity. The converse is true for the other species. In post-construction, we see a similar trend. However, it seems that only coyotes have this preference for traffic while every other species does not seem effected. The datasets used for this are severely mismatched and the results here should only be used to encourage addtional study with standardized sampling methods.
+
+![](PCA Select Plots/Pre.Traffic.png)
+
+![](PCA Select Plots/Post.Traffic.png)
+
+\newpage
+# R Code (1 of 8)
+```{r eval=FALSE}
+
+# Import data set from github
+# Github Access URL: https://github.com/Kinsman-Road/rcode.git
+library(readxl)
+pre <- read_excel("PCA/pca.xlsx", sheet = "pca.pre.c")
+post <- read_excel("PCA/pca.xlsx", sheet = "pca.post.c")
+
+# Prepare dataframes
+pre <- data.frame(pre)
+post <- data.frame(post)
+
+pre.n <- pre[1:7]      #create dataframes with only numerical columns from pre
+post.n <- post[1:7]    #create dataframes with only numerical columns from post
+
+# Performing principal components analysis
+library(factoextra)
+library(FactoMineR)
+
+pca.pre <- prcomp(pre.n, scale = TRUE)   #singular value decomposition
+pca.post <- prcomp(post.n, scale = TRUE)   #singular value decomposition
+pre.eig <- get_eigenvalue(pca.pre)
+post.eig <- get_eigenvalue(pca.post)
+
+# Calculate PCA coordinates
+
+# Pre-Construction PCA Coordinates
+pre.vcf <- function(pre.load, comp.sdev){pre.load*comp.sdev}
+pre.load <- pca.pre$rotation
+pre.sdev <- pca.pre$sdev
+pre.vcoord <- t(apply(pre.load, 1, pre.vcf, pre.sdev ))
+pre.vc <- head(pre.vcoord[,1:7])   #1:7 number of dimensions
+
+# Post-Construction PCA Coordinates
+post.vcf <- function(post.load, comp.sdev){post.load*comp.sdev}
+post.load <- pca.post$rotation
+post.sdev <- pca.post$sdev
+post.vcoord <- t(apply(post.load, 1, post.vcf, post.sdev))
+post.vc <- head(post.vcoord[,1:7])   #1:7 number of dimensions
+
+pre.vc       #table of pre pca coords
+post.vc      #table of post pca coords
+
+# PCA Qualtity of Representation
+pre.cos2 <- pre.vcoord^2
+post.cos2 <- post.vcoord^2
+
+pre.cos2     #table of contribution to each dimension
+post.cos2    #table of contribution to each dimension
+```
+
+\newpage
+# R Code (2 of 8)
+```{r eval=FALSE}
+# PCA Contributions to Each Given Component
+pre.cc2 <- apply(pre.cos2, 2, sum)
+contrib <- function(pre.cos2, pre.cc2){pre.cos2*100/pre.cc2}
+pre.varc <- t(apply(pre.cos2, 1, contrib, pre.cc2))
+pre.vcontrib <- head(pre.varc[,1:7])   #1:7 number of dimensions
+
+post.cc2 <- apply(post.cos2, 2, sum)
+contrib <- function(post.cos2, post.cc2){post.cos2*100/post.cc2}
+post.varc <- t(apply(post.cos2, 1, contrib, post.cc2))
+post.vcontrib <- head(post.varc[,1:7])   #1:7 number of dimensions
+
+pre.vcontrib
+post.vcontrib
+
+# Creating a scree plot to determine principal dimensions of interest
+pre.scree <- fviz_eig(pca.pre,
+                      title = "Pre-Construction Scree Plot")
+
+post.scree <- fviz_eig(pca.post,
+                       title = "Post-Construction Scree Plot")
+pre.scree
+post.scree
+
+# Creating contribution plot for individual observations
+pre.ind <- fviz_pca_ind(pca.pre,
+                        col.ind = "cos2",
+                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   
+                        repel = TRUE,
+                        label = "none",
+                        title = "Pre-Construction Individual Plot")
+
+post.ind <- fviz_pca_ind(pca.post,
+                        col.ind = "cos2",
+                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   
+                        repel = TRUE,
+                        label = "none",
+                        title = "Post-Construction Individual Plot")
+pre.ind
+post.ind
+```
+
+\newpage
+# R Code (3 of 8)
+```{r eval=FALSE}
+# Creating contribution plot for variable contributions
+pre.var <- fviz_pca_var(pca.pre,
+                        col.var = "cos2",
+                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   
+                        repel = TRUE,
+                        title = "Pre-Construction Variable Plot")
+
+post.var <- fviz_pca_var(pca.post,
+                         col.var = "cos2",
+                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   
+                         repel = TRUE,
+                         title = "Post-Construction Variable Plot")
+pre.var
+post.var
+
+# Creating a biplot(combination of ind + var plots)
+pre.bp <- fviz_pca_biplot(pca.pre,
+                         col.ind = "coral",
+                         col.var = "#2f2091",
+                         label = "var",
+                         repel = TRUE,
+                         title = "Pre-Construction Biplot")
+
+post.bp <- fviz_pca_biplot(pca.post,
+                           col.ind = "cadetblue3",
+                           col.var = "#2f2091",
+                           label = "var",
+                           repel = TRUE,
+                           title = "Post-Construction Biplot")
+pre.bp
+post.bp
+
+# Creating 3D Observation Plots 
+library(pca3d)
+
+pre3d.species <- pca3d(pca.pre, group=pre$species)
+pre3d.mcat <- pca3d(pca.pre, group=pre$category)
+pre3d.dnc <- pca3d(pca.pre, group=pre$dnc)
+pre3d.traffic <- pca3d(pca.pre, group=pre$traffic)
+
+post3d.species <- pca3d(pca.post, group=post$species)
+post3d.mcat <- pca3d(pca.post, group=post$category)
+post3d.dnc <- pca3d(pca.post, group=post$dnc)
+post3d.traffic <- pca3d(pca.post, group=post$traffic)
+```
+\newpage
+# R Code (4 of 8)
+```{r eval=FALSE}                                     
+# Creating an individual PCA plot with ellipses for categories
+# (1) First define categories as factors
+
+# (1a) Pre categories
+pre.g.species <- as.factor(pre$species[1:351])
+pre.g.solar <- as.factor(pre$solar[1:351])
+pre.g.cat <- as.factor(pre$category[1:351])
+pre.g.cam <- as.factor(pre$camera[1:351])
+pre.g.traffic <- as.factor(pre$traffic[1:351])
+pre.g.dnc <- as.factor(pre$dnc[1:351])
+
+# (1b) Post categories
+post.g.species <- as.factor(post$species[1:221])
+post.g.solar <- as.factor(post$solar[1:221])
+post.g.cat <- as.factor(post$category[1:221])
+post.g.cam <- as.factor(post$camera[1:221])
+post.g.traffic <- as.factor(post$traffic[1:221])
+post.g.dnc <- as.factor(post$dnc[1:221])
+
+# (2) Produce ellipses PCA graphs for every factor   
+
+# (2a) Pre-Construction Ellipses PCA categories
+pre.species <- fviz_pca_ind(pca.pre,
+                            col.ind = pre.g.species,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Pre-Construction: Species Groupings") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
+pre.solar <- fviz_pca_ind(pca.pre,
+                            col.ind = pre.g.solar,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Pre-Construction: Daylight Preference") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+```
+\newpage
+# R Code (5 of 8)
+```{r eval=FALSE}
+# (2a) Pre-Construction Ellipses PCA categories (Continued)
+pre.cat <- fviz_pca_ind(pca.pre,
+                            col.ind = pre.g.cat,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Pre-Construction: Mammalian Groupings") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
+pre.cam <- fviz_pca_ind(pca.pre,
+                            col.ind = pre.g.cam,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Pre-Construction: Camera Preference") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
+pre.traffic <- fviz_pca_ind(pca.pre,
+                           col.ind = pre.g.traffic,
+                           palette = c( ),
+                           addEllipses = TRUE,
+                           ellipse.type = "confidence",
+                           legend.title = "Groups",
+                           repel = TRUE,
+                           label = "none",
+                           title = "Pre-Construction: Traffic Preference") + 
+                  geom_text(
+                           label=pre$species, 
+                           nudge_x = 0.25, nudge_y = 0.25,
+                           check_overlap = T)
+```
+\newpage
+# R Code (6 of 8)
+```{r eval=FALSE}
+# (2a) Pre-Construction Ellipses PCA categories (Continued)
+pre.dnc <- fviz_pca_ind(pca.pre,
+                            col.ind = pre.g.dnc,
+                            palette = c(""),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Pre-Construction: D/N/C Category") + 
+                   geom_text(
+                            label=pre$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
+# (2b) Post-Construction Ellipses PCA categories
+post.species <- fviz_pca_ind(pca.post,
+                            col.ind = post.g.species,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Post-Construction: Species Groupings") + 
+                   geom_text(
+                            label=post$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+
+post.solar <- fviz_pca_ind(pca.post,
+                          col.ind = post.g.solar,
+                          palette = c( ),
+                          addEllipses = TRUE,
+                          ellipse.type = "confidence",
+                          legend.title = "Groups",
+                          repel = TRUE,
+                          label = "none",
+                          title = "Post-Construction: Daylight preference") + 
+                 geom_text(
+                          label=post$species, 
+                          nudge_x = 0.25, nudge_y = 0.25,
+                          check_overlap = T)
+```
+\newpage
+# R Code (7 of 8)
+```{r eval=FALSE}
+# (2b) Post-Construction Ellipses PCA categories (Continued)
+post.cat <- fviz_pca_ind(pca.post,
+                        col.ind = post.g.cat,
+                        palette = c( ),
+                        addEllipses = TRUE,
+                        ellipse.type = "confidence",
+                        legend.title = "Groups",
+                        repel = TRUE,
+                        label = "none",
+                        title = "Post-Construction: Mammalian Groupings") + 
+               geom_text(
+                        label=post$species, 
+                        nudge_x = 0.25, nudge_y = 0.25,
+                        check_overlap = T)
+
+post.cam <- fviz_pca_ind(pca.post,
+                        col.ind = post.g.cam,
+                        palette = c( ),
+                        addEllipses = TRUE,
+                        ellipse.type = "confidence",
+                        legend.title = "Groups",
+                        repel = TRUE,
+                        label = "none",
+                        title = "Post-Construction: Camera Preference") + 
+               geom_text(
+                        label=post$species, 
+                        nudge_x = 0.25, nudge_y = 0.25,
+                        check_overlap = T)
+
+post.traffic <- fviz_pca_ind(pca.post,
+                            col.ind = post.g.traffic,
+                            palette = c( ),
+                            addEllipses = TRUE,
+                            ellipse.type = "confidence",
+                            legend.title = "Groups",
+                            repel = TRUE,
+                            label = "none",
+                            title = "Post-Construction: Traffic Preference") + 
+                   geom_text(
+                            label=post$species, 
+                            nudge_x = 0.25, nudge_y = 0.25,
+                            check_overlap = T)
+```
+\newpage
+# R Code (8 of 8)
+```{r eval=FALSE}
+# (2b) Post-Construction Ellipses PCA categories (Continued)
+post.dnc <- fviz_pca_ind(pca.post,
+                             col.ind = post.g.dnc,
+                             palette = c( ),
+                             addEllipses = TRUE,
+                             ellipse.type = "confidence",
+                             legend.title = "Groups",
+                             repel = TRUE,
+                             label = "none",
+                             title = "Post-Construction: D/N/C Category") + 
+                    geom_text(
+                             label=post$species, 
+                             nudge_x = 0.25, nudge_y = 0.25,
+                             check_overlap = T)
+
+# Generate Plots
+pre.scree
+pre.ind
+pre.var
+pre.bp
+pre.species
+pre.solar
+pre.cat
+pre.cam
+pre.traffic
+pre.dnc
+
+post.scree
+post.ind
+post.var
+post.bp
+post.species
+post.solar
+post.cat
+post.cam
+post.traffic
+post.dnc
+```
