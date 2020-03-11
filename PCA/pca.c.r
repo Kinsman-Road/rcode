@@ -164,12 +164,12 @@ pre.g.dnc <- as.factor(pre$dnc[1:351])
 
 
 # (1b) Post categories
-post.g.species <- as.factor(post$species[1:221])
-post.g.solar <- as.factor(post$solar[1:221])
-post.g.cat <- as.factor(post$category[1:221])
-post.g.cam <- as.factor(post$camera[1:221])
-post.g.traffic <- as.factor(post$traffic[1:221])
-post.g.dnc <- as.factor(post$dnc[1:221])
+post.g.species <- as.factor(post$species[1:224])
+post.g.solar <- as.factor(post$solar[1:224])
+post.g.cat <- as.factor(post$category[1:224])
+post.g.cam <- as.factor(post$camera[1:224])
+post.g.traffic <- as.factor(post$traffic[1:224])
+post.g.dnc <- as.factor(post$dnc[1:224])
 
 # (2) Produce ellipses PCA graphs for every factor   
 
