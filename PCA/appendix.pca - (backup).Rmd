@@ -81,80 +81,38 @@ kable(post.vcontrib[1:6,1:7], caption = "Post-Construction Variable Dimension Co
 
 \newpage
 # Scree Plots
-```{r echo = FALSE, fig.height = 3}
+![](PCA Select Plots/Pre.Scree.png)![](PCA Select Plots/Post.Scree.png)
+
+```{r plots, echo = FALSE}
 pre.scree <- fviz_eig(pca.pre,
-                      title = "Figure 1a: Pre-Construction Scree Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-
+                      title = "none",
+                      subtitle = "Pre-Construction Scree Plot",
+                      caption = "Figure 1a")
 post.scree <- fviz_eig(pca.post,
-                       title = "Figure 1b: Post-Construction Scree Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-
+                       title = "",
+                       subtitle = "Post-Construction Scree Plot",
+                       caption = "Figure 1b")
+                       
 grid.arrange(pre.scree,post.scree, ncol=2)
 ```
 
 As seen above, the scree plots for both pre and post-construction show many principle dimensions. This is not ideal as we cannot readily visualize 4 or more dimensions. Though we miss a great deal of detail by examining fewer plots, we can still gain a sense of understanding since there is already so much noise in the datasets. The following plots will only be shown in two dimensions for ease of interpretation. For three-dimensional principle components plots, please refer to the R-code at the end of this section.
 
-# Individual Plots
-```{r echo = FALSE, fig.height = 3}
-pre.ind <- fviz_pca_ind(pca.pre,
-                        col.ind = "cos2",
-                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
-                        repel = TRUE,
-                        label = "none",
-                        title = "Figure 2a: Pre-Construction Individual Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-
-post.ind <- fviz_pca_ind(pca.post,
-                        col.ind = "cos2",
-                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
-                        repel = TRUE,
-                        label = "none",
-                        title = "Figure 2b: Post-Construction Individual Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-
-grid.arrange(pre.ind,post.ind, ncol=2)
-```
+# Principal Components Individual Plots
+![](PCA Select Plots/Pre.Ind.png)![](PCA Select Plots/Post.Ind.png)
 
 These are the principle components individual contribution plots. The color indicates greater contribution to the dimensions in question. In this case, red means that an individual observation contributes a greater percentage of variation to a particular dimension. Conversely, the turqoise coloring indicates that a particular observation does not contribute much at all.
 
 \newpage
-# Variable Plots
-```{r echo = FALSE, fig.height = 3}
-pre.var <- fviz_pca_var(pca.pre,
-                        col.var = "cos2",
-                        gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
-                        repel = TRUE,
-                        title = "Figure 3a: Pre-Construction Variable Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-
-post.var <- fviz_pca_var(pca.post,
-                         col.var = "cos2",
-                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
-                         repel = TRUE,
-                         title = "Figure 3b: Post-Construction Variable Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-
-grid.arrange(pre.var,post.var, ncol=2)
-```
+# Principal Components Variable Plots
+![](PCA Select Plots/Pre.Var.png)![](PCA Select Plots/Post.Var.png)
 
 Similar to the individual contribution plots above, these variable plots measure only the contribution that each collected variable provides relative to each other. Arrows that point away from each other indicate non-correlated data. Arrows that point in the same direction indicate more correlated data.
 
 In this particular case, we note that precipitation and month are closely correlated. This makes sense give that precipitation amounts are often seasonal and go hand-in-hand with months. Additionally, we see strong correlation between daily minimum and maximum temperature. This is not surprising as we expect to see fairly consistent differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expected.
 
-# Biplots
-```{r echo = FALSE, fig.height = 3}
-pre.bp <- fviz_pca_biplot(pca.pre,
-                         col.ind = "coral",
-                         col.var = "#2f2091",
-                         label = "var",
-                         repel = TRUE,
-                         title = "Figure 4a: Pre-Construction Biplot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-                       
-
-post.bp <- fviz_pca_biplot(pca.post,
-                           col.ind = "cadetblue3",
-                           col.var = "#2f2091",
-                           label = "var",
-                           repel = TRUE,
-                           title = "Figure 4b: Post-Construction Biplot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
-                       
-grid.arrange(pre.bp,post.bp, ncol=2)
-```
+# Principal Components Biplots
+![](PCA Select Plots/Pre.Biplot.png)![](PCA Select Plots/Post.Biplot.png)
 
 These two biplots overlay variable contributions on top of the indivudal observations into a singular plot. This provides a succinct method to quickly evaluate how each observation corresponds with each variable.
 
@@ -173,9 +131,8 @@ The categorical plots are generated in this order:
 - Crepuscular/Nocturnal Groupings
 - Traffic Preference
 
-
 \newpage
-## _Categorical Plots: Species_
+### _Categorical Plots: Species_
 The plots, below, show how each species interacts with each other. This could provide a useful framework to approach future culvert design to better improve usability for specific groups instead of specific species. Generally speaking, we can see that deer and coyote form two of the larger, more distinct groups. Additionally, we see that deer mice and coyote are simiarly grouped. This specific interaction could suggest a predator-prey relationship as well as culvert preference due to their smaller size.
 
 ![](PCA Select Plots/Pre.Species.png)
@@ -183,7 +140,7 @@ The plots, below, show how each species interacts with each other. This could pr
 ![](PCA Select Plots/Post.Species.png)
 
 \newpage
-## _Categorical Plots: Mammalian Groups_
+### _Categorical Plots: Mammalian Groups_
 Simiar to the species plots above, we broaden our scope of definition and sort our species counts by mammalian groups. Each species observation is still noted, but the colors here refer to the key seen on the right-hand side of the plots. Pre-construction shows a clear grouping of deer while every other mammalian group are more similar to each other. In post-construction, we see the variations between the groups are more clustered together. This could indicate that the culverts presents a funneling effect.
 
 ![](PCA Select Plots/Pre.MCat.png)
@@ -191,7 +148,7 @@ Simiar to the species plots above, we broaden our scope of definition and sort o
 ![](PCA Select Plots/Post.MCat.png)
 
 \newpage
-## _Categorical Plots: Diel Activity Groups_
+### _Categorical Plots: Crepuscular/Nocturnal_
 Here, we can further our scope from mammalian groups into specific hourly activity preference that species are known for. There are two groups - crepuscular and nocturnal. Crepuscular animals are more active during the dawn and evening hours while nocturnal animals are more active during night time hours. In pre-construction, we see the two categories are distinctly grouped - as is expected. These groupings still exist in post-construction, yet the variability is more evenly mixed and centered. If these two groups are merging, then it could further suppport the notion that the culverts present a funneling effect.
 
 ![](PCA Select Plots/Pre.DNC.png)
@@ -199,14 +156,14 @@ Here, we can further our scope from mammalian groups into specific hourly activi
 ![](PCA Select Plots/Post.DNC.png)
 
 \newpage
-## _Categorical Plots: Camera Preference_
+### _Categorical Plots: Camera Preference_
 When examining the general groupings for camera preference, we notice some intrigueing changes in behavior. In pre-construction observations, there are two distinct groupings. The first grouping involves camera camera _2 North_ and _4 South_ while the second group involves camera _1 North_ and camera _3 South_. In pre-construction, this particular grouping is likely due to the angle of the cameras. In post-construction, however, all of the cameras seem to have more overlap. This could suppor the notion that the culverts present a funneling effect.
 
 ![](PCA Select Plots/Pre.Cam.png)
 ![](PCA Select Plots/Post.Cam.png)
 
 \newpage
-## _Categorical Plots: Traffic_
+### _Categorical Plots: Traffic_
 When overlaid with recent traffic data onto our historical data, we can see some relationship with the presence of traffic. Pre-construction shows that only deer have almost no traffic preference and will be present regardless of activity. In post-construction, we see a similar trend. However, it seems that only coyotes have a strong preference for traffic while every other species does not seem affected. 
 
 It should strongly noted that the datasets used for the traffic analysis are severely mismatched. The observational data sets are from the year 2015-2016 and 2018-2019 while the traffic data is from 2020 and in a location that is due approximately 300 meters due north at Boeckman Road. It could be assumed that populations that access the Boeckman Road and Kinsman Road crossings are the same populations. However, there is no empirical basis for this assumption. 
