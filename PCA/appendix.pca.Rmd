@@ -222,7 +222,7 @@ The results here should only be used to encourage the need for additional study 
 The addition of a dimension to the PCA plots bring an increase in descriptive variability by approxiately 20%.This is not a trivial amount; however, due to the modeling of multi-dimensional plots onto two-dimensional planes, we have opted to include conclusions drawn from these additonal dimensions. However, we have included the plots here to spur further discussion for future studies.
 
 ### _3-Dimensional PCA Plot of Species_
-```{r echo = false}
+```{r echo = FALSE}
 library(pca3d)
 
 
@@ -242,22 +242,22 @@ grid.arrange(pre3d.species,post3d.species,ncol=2)
 ```
 
 ### _3-Dimensional PCA Plot of Mammalian Category_
-```{r echo = false}
+```{r echo = FALSE}
 grid.arrange(pre3d.mcat,post3d.mcat,ncol=2)
 ```
 
 ### _3-Dimensional PCA Plot of Diel Activity_
-```{r echo = false}
+```{r echo = FALSE}
 grid.arrange(pre3d.dnc,post3d.dnc,ncol=2)
 ```
 
 ### _3-Dimensional PCA Plot of Camera Preference_
-```{r echo = false}
+```{r echo = FALSE}
 grid.arrange(pre3d.cam,post3d.cam,ncol=2)
 ```
 
 ### _3-Dimensional PCA Plot of Traffic Preference_
-```{r echo = false}
+```{r echo = FALSE}
 grid.arrange(pre3d.traffic,post3d.traffic,ncol=2)
 ```
 
