@@ -218,50 +218,6 @@ The results here should only be used to encourage the need for additional study 
 ![](PCA Select Plots/Post.Traffic.png)
 
 \newpage
-# 3 Dimensional Plots
-The addition of a dimension to the PCA plots bring an increase in descriptive variability by approxiately 20%.This is not a trivial amount; however, due to the modeling of multi-dimensional plots onto two-dimensional planes, we have opted to include conclusions drawn from these additonal dimensions. However, we have included the plots here to spur further discussion for future studies.
-
-### _3-Dimensional PCA Plot of Species_
-```{r echo = FALSE}
-library(pca3d)
-
-
-pre3d.species <- pca3d(pca.pre, group=pre$species)
-pre3d.mcat <- pca3d(pca.pre, group=pre$category)
-pre3d.dnc <- pca3d(pca.pre, group=pre$dnc)
-pre3d.cam <- pca3d(pca.pre, group=pre$camera)
-pre3d.traffic <- pca3d(pca.pre, group=pre$traffic)
-
-post3d.species <- pca3d(pca.post, group=post$species)
-post3d.mcat <- pca3d(pca.post, group=post$category)
-post3d.dnc <- pca3d(pca.post, group=post$dnc)
-post3d.cam <- pca3d(pca.post, group=post$camera)
-post3d.traffic <- pca3d(pca.post, group=post$traffic)
-
-grid.arrange(pre3d.species,post3d.species,ncol=2)
-```
-
-### _3-Dimensional PCA Plot of Mammalian Category_
-```{r echo = FALSE}
-grid.arrange(pre3d.mcat,post3d.mcat,ncol=2)
-```
-
-### _3-Dimensional PCA Plot of Diel Activity_
-```{r echo = FALSE}
-grid.arrange(pre3d.dnc,post3d.dnc,ncol=2)
-```
-
-### _3-Dimensional PCA Plot of Camera Preference_
-```{r echo = FALSE}
-grid.arrange(pre3d.cam,post3d.cam,ncol=2)
-```
-
-### _3-Dimensional PCA Plot of Traffic Preference_
-```{r echo = FALSE}
-grid.arrange(pre3d.traffic,post3d.traffic,ncol=2)
-```
-
-\newpage
 # R Code (1 of 8)
 ```{r eval=FALSE}
 
