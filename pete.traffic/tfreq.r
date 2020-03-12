@@ -14,7 +14,8 @@ library(tidyverse)
 
 
 #Import Dataset
-d.e <- data.frame(read_excel("pete.traffic/tdata.xlsx"))
+d.e <- data.frame(read_excel("pete.traffic/tdata.xlsx", sheet = "tot"))
+d.deer <- data.frame(read_excel("pete.traffic/tdata.xlsx", sheet = "deer"))
 
 d.mean <- d.e[c(8:10)]     #For mean aggregates
 d.day <- d.e[c(1:7)]       #For each individual day
@@ -58,8 +59,18 @@ p.day <- ggplot(d.d, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) +
   theme(legend.position="none") +
   xlab("")
 
+p.deer <- ggplot(d.deer, aes(fill=as.factor(hour), y=value, x=as.factor(hour))) + 
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis(discrete = T, option = "E") +
+  ggtitle("Deer Frequency for Post-Construction Kinsman") +
+  facet_wrap(~text) +
+  theme_ipsum() +
+  theme(legend.position="none") +
+  xlab("")
+
 p.mean
 p.day
+p.deer
 
 #Overlap
 d.deer <- d.e[10]
