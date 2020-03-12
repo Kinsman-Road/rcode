@@ -182,7 +182,7 @@ pre.species <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Figure c.5a: Pre-Construction Species Groupings") + 
+                            title = "Figure C.5a: Pre-Construction Species Groupings") + 
                    geom_text(
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -210,7 +210,7 @@ pre.cat <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Figure c.6a: Pre-Construction Mammalian Groupings") + 
+                            title = "Figure C.6a: Pre-Construction Mammalian Groupings") + 
                    geom_text(
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -225,7 +225,7 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Figure c.8a: Pre-Construction Camera Preference") + 
+                            title = "Figure C.8a: Pre-Construction Camera Preference") + 
                    geom_text(
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -240,7 +240,7 @@ pre.traffic <- fviz_pca_ind(pca.pre,
                            legend.title = "Groups",
                            repel = TRUE,
                            label = "none",
-                           title = "Figure c.9a: Pre-Construction Traffic Preference") + 
+                           title = "Figure C.9a: Pre-Construction Traffic Preference") + 
                   geom_text(
                            label=pre$species, 
                            nudge_x = 0.25, nudge_y = 0.25,
@@ -255,7 +255,7 @@ pre.dnc <- fviz_pca_ind(pca.pre,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Figure c.7a: Pre-Construction Diel Activity") + 
+                            title = "Figure C.7a: Pre-Construction Diel Activity") + 
                    geom_text(
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -270,7 +270,7 @@ post.species <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Figure c.5b: Post-Construction Species Groupings") + 
+                            title = "Figure C.5b: Post-Construction Species Groupings") + 
                    geom_text(
                             label=post$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -298,7 +298,7 @@ post.cat <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        title = "Figure c.6b: Post-Construction Mammalian Groupings") + 
+                        title = "Figure C.6b: Post-Construction Mammalian Groupings") + 
                geom_text(
                         label=post$species, 
                         nudge_x = 0.25, nudge_y = 0.25,
@@ -312,7 +312,7 @@ post.cam <- fviz_pca_ind(pca.post,
                         legend.title = "Groups",
                         repel = TRUE,
                         label = "none",
-                        title = "Figure c.8b: Post-Construction Camera Preference") + 
+                        title = "Figure C.8b: Post-Construction Camera Preference") + 
                geom_text(
                         label=post$species, 
                         nudge_x = 0.25, nudge_y = 0.25,
@@ -326,7 +326,7 @@ post.traffic <- fviz_pca_ind(pca.post,
                             legend.title = "Groups",
                             repel = TRUE,
                             label = "none",
-                            title = "Figure c.9b: Post-Construction Traffic Preference") + 
+                            title = "Figure C.9b: Post-Construction Traffic Preference") + 
                    geom_text(
                             label=post$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
@@ -340,7 +340,7 @@ post.dnc <- fviz_pca_ind(pca.post,
                              legend.title = "Groups",
                              repel = TRUE,
                              label = "none",
-                             title = "Figure c.7b: Post-Construction Diel Activity") + 
+                             title = "Figure C.7b: Post-Construction Diel Activity") + 
                     geom_text(
                              label=post$species, 
                              nudge_x = 0.25, nudge_y = 0.25,
