@@ -83,10 +83,10 @@ kable(post.vcontrib[1:6,1:7], caption = "Post-Construction Variable Dimension Co
 # Scree Plots
 ```{r echo = FALSE, fig.height = 3}
 pre.scree <- fviz_eig(pca.pre,
-                      title = "Figure c.1a: Pre-Construction Scree Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                      title = "Figure C.1a: Pre-Construction Scree Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
 
 post.scree <- fviz_eig(pca.post,
-                       title = "Figure c.1b: Post-Construction Scree Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                       title = "Figure C.1b: Post-Construction Scree Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
 
 grid.arrange(pre.scree,post.scree, ncol=2)
 ```
@@ -100,14 +100,14 @@ pre.ind <- fviz_pca_ind(pca.pre,
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         label = "none",
-                        title = "Figure c.2a: Pre-Construction Individual Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                        title = "Figure C.2a: Pre-Construction Individual Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
 
 post.ind <- fviz_pca_ind(pca.post,
                         col.ind = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
                         label = "none",
-                        title = "Figure c.2b: Post-Construction Individual Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                        title = "Figure C.2b: Post-Construction Individual Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
 
 grid.arrange(pre.ind,post.ind, ncol=2)
 ```
@@ -121,13 +121,13 @@ pre.var <- fviz_pca_var(pca.pre,
                         col.var = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                         repel = TRUE,
-                        title = "Figure c.3a: Pre-Construction Variable Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                        title = "Figure C.3a: Pre-Construction Variable Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
 
 post.var <- fviz_pca_var(pca.post,
                          col.var = "cos2",
                          gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
                          repel = TRUE,
-                         title = "Figure c.3b: Post-Construction Variable Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                         title = "Figure C.3b: Post-Construction Variable Plot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
 
 grid.arrange(pre.var,post.var, ncol=2)
 ```
@@ -143,7 +143,7 @@ pre.bp <- fviz_pca_biplot(pca.pre,
                          col.var = "#2f2091",
                          label = "var",
                          repel = TRUE,
-                         title = "Figure c.4a: Pre-Construction Biplot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                         title = "Figure C.4a: Pre-Construction Biplot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
                        
 
 post.bp <- fviz_pca_biplot(pca.post,
@@ -151,7 +151,7 @@ post.bp <- fviz_pca_biplot(pca.post,
                            col.var = "#2f2091",
                            label = "var",
                            repel = TRUE,
-                           title = "Figure c.4b: Post-Construction Biplot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
+                           title = "Figure C.4b: Post-Construction Biplot") + theme(plot.title = element_text(size=8), title = element_text(face = "italic"))
                        
 grid.arrange(pre.bp,post.bp, ncol=2)
 ```
