@@ -7,10 +7,7 @@
 
 
 # ::: to-do :::
-# remove labels from species pca
-# recode labels to a subcaption on pca
-# add ggplot size + dpi code into rmarkdown
-# redo R code appendex
+# redo R code appendix
 # review conclusions and paper for submission
 
 # Import data set from github
@@ -191,10 +188,11 @@ pre.species <- fviz_pca_ind(pca.pre,
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.5a: Pre-Construction Species Groupings") + 
-                   geom_text(
+                   geom_text(aes(fontface=3, color = factor(pre$species)),
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"), plot.label = element_text(size=10))
+                            check_overlap = T,
+                            size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 pre.solar <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.solar,
@@ -215,15 +213,15 @@ pre.cat <- fviz_pca_ind(pca.pre,
                             palette = c( ),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Mammalian Category",
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.6a: Pre-Construction Mammalian Groupings") + 
-                   geom_text(
-                            label=pre$species, 
+                   geom_text(aes(fontface=3, color = pre$category),
+                            label = pre$species,
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
-
+                            check_overlap = T,
+                            size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 pre.cam <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cam,
@@ -234,10 +232,11 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.8a: Pre-Construction Camera Preference") + 
-                   geom_text(
+                   geom_text(aes(fontface=3, color = factor(pre$camera)),
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                            check_overlap = T,
+                            size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 
 pre.traffic <- fviz_pca_ind(pca.pre,
@@ -249,10 +248,11 @@ pre.traffic <- fviz_pca_ind(pca.pre,
                            repel = TRUE,
                            label = "none",
                            title = "Figure C.9a: Pre-Construction Traffic Preference") + 
-                  geom_text(
+                  geom_text(aes(fontface=3, color = factor(pre$traffic)),
                            label=pre$species, 
                            nudge_x = 0.25, nudge_y = 0.25,
-                           check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                           check_overlap = T,
+                           size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 
 pre.dnc <- fviz_pca_ind(pca.pre,
@@ -264,10 +264,11 @@ pre.dnc <- fviz_pca_ind(pca.pre,
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.7a: Pre-Construction Diel Activity") + 
-                   geom_text(
+                   geom_text(aes(fontface=3, color = factor(pre$dnc)),
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                            check_overlap = T,
+                            size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 # (2b) Post-Construction Ellipses PCA categories
 post.species <- fviz_pca_ind(pca.post,
@@ -282,7 +283,8 @@ post.species <- fviz_pca_ind(pca.post,
                    geom_text(
                             label=post$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                            check_overlap = T,
+                            size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 post.solar <- fviz_pca_ind(pca.post,
                           col.ind = post.g.solar,
@@ -307,10 +309,11 @@ post.cat <- fviz_pca_ind(pca.post,
                         repel = TRUE,
                         label = "none",
                         title = "Figure C.6b: Post-Construction Mammalian Groupings") + 
-               geom_text(
+               geom_text(aes(fontface=3, color = factor(post$category)),
                         label=post$species, 
                         nudge_x = 0.25, nudge_y = 0.25,
-                        check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                        check_overlap = T,
+                        size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 post.cam <- fviz_pca_ind(pca.post,
                         col.ind = post.g.cam,
@@ -321,10 +324,11 @@ post.cam <- fviz_pca_ind(pca.post,
                         repel = TRUE,
                         label = "none",
                         title = "Figure C.8b: Post-Construction Camera Preference") + 
-               geom_text(
+               geom_text(aes(fontface=3, color = factor(post$camera)),
                         label=post$species, 
                         nudge_x = 0.25, nudge_y = 0.25,
-                        check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                        check_overlap = T,
+                        size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 post.traffic <- fviz_pca_ind(pca.post,
                             col.ind = post.g.traffic,
@@ -335,10 +339,11 @@ post.traffic <- fviz_pca_ind(pca.post,
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.9b: Post-Construction Traffic Preference") + 
-                   geom_text(
+                   geom_text(aes(fontface=3, color = factor(post$traffic)),
                             label=post$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                            check_overlap = T,
+                            size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 post.dnc <- fviz_pca_ind(pca.post,
                              col.ind = post.g.dnc,
@@ -349,10 +354,11 @@ post.dnc <- fviz_pca_ind(pca.post,
                              repel = TRUE,
                              label = "none",
                              title = "Figure C.7b: Post-Construction Diel Activity") + 
-                    geom_text(
+                    geom_text(aes(fontface=3, color = factor(post$dnc)),
                              label=post$species, 
                              nudge_x = 0.25, nudge_y = 0.25,
-                             check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                             check_overlap = T,
+                             size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
 # Generate Plots
 pre.scree
