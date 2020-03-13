@@ -1,6 +1,8 @@
 ---
 title: "Appendix C: Principle Components Analysis (PCA)"
-output: pdf_document
+output: 
+  pdf_document:
+    fig_caption: false
 ---
 # Principle Components Analysis
 
@@ -170,12 +172,13 @@ The categorical plots are generated in this order:
 
 - Species Groupings
 - Mammlian Groupings
-- Crepuscular/Nocturnal Groupings
+- Diety Activity Groupings
 - Traffic Preference
 
 
 \newpage
-## _Categorical Plots: Species_
+##_Categorical Plots: Species_
+
 The plots, below, show how each species interacts with each other. This could provide a useful framework to approach future culvert design to better improve usability for specific groups instead of specific species. Generally speaking, we can see that deer and coyote form two of the larger, more distinct groups. Additionally, we see that deer mice and coyote are simiarly grouped. This specific interaction could suggest a predator-prey relationship as well as culvert preference due to their smaller size.
 
 ![](PCA Select Plots/Pre.Species.png)
@@ -183,7 +186,8 @@ The plots, below, show how each species interacts with each other. This could pr
 ![](PCA Select Plots/Post.Species.png)
 
 \newpage
-## _Categorical Plots: Mammalian Groups_
+##_Categorical Plots: Mammalian Groups_
+
 Simiar to the species plots above, we broaden our scope of definition and sort our species counts by mammalian groups. Each species observation is still noted, but the colors here refer to the key seen on the right-hand side of the plots. Pre-construction shows a clear grouping of deer while every other mammalian group are more similar to each other. In post-construction, we see the variations between the groups are more clustered together. This could indicate that the culverts presents a funneling effect.
 
 ![](PCA Select Plots/Pre.MCat.png)
@@ -191,7 +195,8 @@ Simiar to the species plots above, we broaden our scope of definition and sort o
 ![](PCA Select Plots/Post.MCat.png)
 
 \newpage
-## _Categorical Plots: Diel Activity Groups_
+##_Categorical Plots: Diel Activity Groups_
+
 Here, we can further our scope from mammalian groups into specific hourly activity preference that species are known for. There are two groups - crepuscular and nocturnal. Crepuscular animals are more active during the dawn and evening hours while nocturnal animals are more active during night time hours. In pre-construction, we see the two categories are distinctly grouped - as is expected. These groupings still exist in post-construction, yet the variability is more evenly mixed and centered. If these two groups are merging, then it could further suppport the notion that the culverts present a funneling effect.
 
 ![](PCA Select Plots/Pre.DNC.png)
@@ -199,14 +204,17 @@ Here, we can further our scope from mammalian groups into specific hourly activi
 ![](PCA Select Plots/Post.DNC.png)
 
 \newpage
-## _Categorical Plots: Camera Preference_
+##_Categorical Plots: Camera Preference_
+
 When examining the general groupings for camera preference, we notice some intrigueing changes in behavior. In pre-construction observations, there are two distinct groupings. The first grouping involves camera camera _2 North_ and _4 South_ while the second group involves camera _1 North_ and camera _3 South_. In pre-construction, this particular grouping is likely due to the angle of the cameras. In post-construction, however, all of the cameras seem to have more overlap. This could suppor the notion that the culverts present a funneling effect.
 
 ![](PCA Select Plots/Pre.Cam.png)
+
 ![](PCA Select Plots/Post.Cam.png)
 
 \newpage
-## _Categorical Plots: Traffic_
+##_Categorical Plots: Traffic_
+
 When overlaid with recent traffic data onto our historical data, we can see some relationship with the presence of traffic. Pre-construction shows that only deer have almost no traffic preference and will be present regardless of activity. In post-construction, we see a similar trend. However, it seems that only coyotes have a strong preference for traffic while every other species does not seem affected. 
 
 It should strongly noted that the datasets used for the traffic analysis are severely mismatched. The observational data sets are from the year 2015-2016 and 2018-2019 while the traffic data is from 2020 and in a location that is due approximately 300 meters due north at Boeckman Road. It could be assumed that populations that access the Boeckman Road and Kinsman Road crossings are the same populations. However, there is no empirical basis for this assumption. 

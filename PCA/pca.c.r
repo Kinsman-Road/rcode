@@ -5,6 +5,14 @@
 
 #::::: [CONDENSED PCA RUN WITH SELECT SPEICES] :::::
 
+
+# ::: to-do :::
+# remove labels from species pca
+# recode labels to a subcaption on pca
+# add ggplot size + dpi code into rmarkdown
+# redo R code appendex
+# review conclusions and paper for submission
+
 # Import data set from github
 library(readxl)
 pre <- read_excel("PCA/pca.xlsx", sheet = "pca.pre.c")
@@ -155,21 +163,21 @@ post3d.traffic <- pca3d(pca.post, group=post$traffic)
 # (1) First define categories as factors
 
 # (1a) Pre categories
-pre.g.species <- as.factor(pre$species[1:351])
-pre.g.solar <- as.factor(pre$solar[1:351])
-pre.g.cat <- as.factor(pre$category[1:351])
-pre.g.cam <- as.factor(pre$camera[1:351])
-pre.g.traffic <- as.factor(pre$traffic[1:351])
-pre.g.dnc <- as.factor(pre$dnc[1:351])
+pre.g.species <- as.factor(pre$species[1:349])
+pre.g.solar <- as.factor(pre$solar[1:349])
+pre.g.cat <- as.factor(pre$category[1:349])
+pre.g.cam <- as.factor(pre$camera[1:349])
+pre.g.traffic <- as.factor(pre$traffic[1:349])
+pre.g.dnc <- as.factor(pre$dnc[1:349])
 
 
 # (1b) Post categories
-post.g.species <- as.factor(post$species[1:224])
-post.g.solar <- as.factor(post$solar[1:224])
-post.g.cat <- as.factor(post$category[1:224])
-post.g.cam <- as.factor(post$camera[1:224])
-post.g.traffic <- as.factor(post$traffic[1:224])
-post.g.dnc <- as.factor(post$dnc[1:224])
+post.g.species <- as.factor(post$species[1:222])
+post.g.solar <- as.factor(post$solar[1:222])
+post.g.cat <- as.factor(post$category[1:222])
+post.g.cam <- as.factor(post$camera[1:222])
+post.g.traffic <- as.factor(post$traffic[1:222])
+post.g.dnc <- as.factor(post$dnc[1:222])
 
 # (2) Produce ellipses PCA graphs for every factor   
 
@@ -186,7 +194,7 @@ pre.species <- fviz_pca_ind(pca.pre,
                    geom_text(
                             label=pre$species, 
                             nudge_x = 0.25, nudge_y = 0.25,
-                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
+                            check_overlap = T) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"), plot.label = element_text(size=10))
 
 pre.solar <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.solar,
@@ -320,7 +328,7 @@ post.cam <- fviz_pca_ind(pca.post,
 
 post.traffic <- fviz_pca_ind(pca.post,
                             col.ind = post.g.traffic,
-                            palette = c( ),
+                            palette = c(),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
                             legend.title = "Groups",
