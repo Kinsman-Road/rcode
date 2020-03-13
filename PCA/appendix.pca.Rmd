@@ -96,7 +96,7 @@ grid.arrange(pre.scree,post.scree, ncol=2)
 As seen above, the scree plots for both pre and post-construction show many principle dimensions. This is not ideal as we cannot readily visualize 4 or more dimensions. Though we miss a great deal of detail by examining fewer plots, we can still gain a sense of understanding since there is already so much noise in the datasets. The following plots will only be shown in two dimensions for ease of interpretation. For three-dimensional principle components plots, please refer to the R-code at the end of this section.
 
 # Individual Plots
-```{r echo = FALSE, fig.height = 3}
+```{r echo = FALSE, fig.height = 3, dpi = 150}
 pre.ind <- fviz_pca_ind(pca.pre,
                         col.ind = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
@@ -118,7 +118,7 @@ These are the principle components individual contribution plots. The color indi
 
 \newpage
 # Variable Plots
-```{r echo = FALSE, fig.height = 3}
+```{r echo = FALSE, fig.height = 3, dpi = 150}
 pre.var <- fviz_pca_var(pca.pre,
                         col.var = "cos2",
                         gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),   #default R colors
@@ -139,7 +139,7 @@ Similar to the individual contribution plots above, these variable plots measure
 In this particular case, we note that precipitation and month are closely correlated. This makes sense give that precipitation amounts are often seasonal and go hand-in-hand with months. Additionally, we see strong correlation between daily minimum and maximum temperature. This is not surprising as we expect to see fairly consistent differences between daily highs and lows. Traffic appears to correlated with hour in both plots, again, this is to be expected.
 
 # Biplots
-```{r echo = FALSE, fig.height = 3}
+```{r echo = FALSE, fig.height = 3, dpi = 150}
 pre.bp <- fviz_pca_biplot(pca.pre,
                          col.ind = "coral",
                          col.var = "#2f2091",
@@ -195,7 +195,7 @@ post.g.traffic <- as.factor(post$traffic[1:222])
 
 The plots, below, show how each species interacts with each other. This could provide a useful framework to approach future culvert design to better improve usability for specific groups instead of specific species. Generally speaking, we can see that deer and coyote form two of the larger, more distinct groups. Additionally, we see that deer mice and coyote are simiarly grouped. This specific interaction could suggest a predator-prey relationship as well as culvert preference due to their smaller size.
 
-```{r echo = FALSE, fig.width = 10.1, fig.height = 5.7, dpi = 600}
+```{r echo = FALSE, fig.width = 10, fig.height = 5.7, dpi = 150}
 pre.species <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.species,
                             palette = c( ),
@@ -226,7 +226,7 @@ post.species
 
 Simiar to the species plots above, we broaden our scope of definition and sort our species counts by mammalian groups. Each species observation is still noted, but the colors here refer to the key seen on the right-hand side of the plots. Pre-construction shows a clear grouping of deer while every other mammalian group are more similar to each other. In post-construction, we see the variations between the groups are more clustered together. This could indicate that the culverts presents a funneling effect.
 
-```{r echo = FALSE, fig.width = 10.1, fig.height = 5.7, dpi = 600}
+```{r echo = FALSE, fig.width = 10, fig.height = 5.7, dpi = 150}
 pre.cat <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cat,
                             palette = c( ),
@@ -268,7 +268,7 @@ post.cat
 
 Here, we can further our scope from mammalian groups into specific hourly activity preference that species are known for. There are two groups - crepuscular and nocturnal. Crepuscular animals are more active during the dawn and evening hours while nocturnal animals are more active during night time hours. In pre-construction, we see the two categories are distinctly grouped - as is expected. These groupings still exist in post-construction, yet the variability is more evenly mixed and centered. If these two groups are merging, then it could further suppport the notion that the culverts present a funneling effect.
 
-```{r echo = FALSE,fig.width = 10.1, fig.height = 5.7, dpi = 600}
+```{r echo = FALSE,fig.width = 10, fig.height = 5.7, dpi = 150}
 pre.dnc <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.dnc,
                             palette = c(""),
@@ -308,7 +308,7 @@ post.dnc
 
 When examining the general groupings for camera preference, we notice some intrigueing changes in behavior. In pre-construction observations, there are two distinct groupings. The first grouping involves camera camera _2 North_ and _4 South_ while the second group involves camera _1 North_ and camera _3 South_. In pre-construction, this particular grouping is likely due to the angle of the cameras. In post-construction, however, all of the cameras seem to have more overlap. This could suppor the notion that the culverts present a funneling effect.
 
-```{r echo = FALSE,fig.width = 10.1, fig.height = 5.7, dpi = 600}
+```{r echo = FALSE,fig.width = 10, fig.height = 5.7, dpi = 150}
 pre.cam <- fviz_pca_ind(pca.pre,
                             col.ind = pre.g.cam,
                             palette = c( ),
@@ -352,7 +352,7 @@ It should strongly noted that the datasets used for the traffic analysis are sev
 
 The results here should only be used to encourage the need for additional study with improved sampling methods.
 
-```{r echo = FALSE,fig.width = 10.1, fig.height = 7, dpi = 600}
+```{r echo = FALSE,fig.width = 10, fig.height = 7, dpi = 150}
 
 post.traffic <- fviz_pca_ind(pca.post,
                             col.ind = post.g.traffic,
