@@ -184,7 +184,7 @@ pre.species <- fviz_pca_ind(pca.pre,
                             palette = c( ),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Groups:",
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.5a: Pre-Construction Species Groupings") + 
@@ -199,7 +199,7 @@ pre.solar <- fviz_pca_ind(pca.pre,
                             palette = c( ),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Groups:",
                             repel = TRUE,
                             label = "none",
                             title = "Pre-Construction: Daylight Preference") + 
@@ -228,7 +228,7 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             palette = c( ),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Groups:",
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.8a: Pre-Construction Camera Preference") + 
@@ -238,13 +238,12 @@ pre.cam <- fviz_pca_ind(pca.pre,
                             check_overlap = T,
                             size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
-
 pre.traffic <- fviz_pca_ind(pca.pre,
                            col.ind = pre.g.traffic,
                            palette = c( ),
                            addEllipses = TRUE,
                            ellipse.type = "confidence",
-                           legend.title = "Groups",
+                           legend.title = "Groups:",
                            repel = TRUE,
                            label = "none",
                            title = "Figure C.9a: Pre-Construction Traffic Preference") + 
@@ -260,7 +259,7 @@ pre.dnc <- fviz_pca_ind(pca.pre,
                             palette = c(""),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Groups:",
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.7a: Pre-Construction Diel Activity") + 
@@ -276,7 +275,7 @@ post.species <- fviz_pca_ind(pca.post,
                             palette = c( ),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Groups:",
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.5b: Post-Construction Species Groupings") + 
@@ -291,7 +290,7 @@ post.solar <- fviz_pca_ind(pca.post,
                           palette = c( ),
                           addEllipses = TRUE,
                           ellipse.type = "confidence",
-                          legend.title = "Groups",
+                          legend.title = "Groups:",
                           repel = TRUE,
                           label = "none",
                           title = "Post-Construction: Daylight preference") + 
@@ -305,7 +304,7 @@ post.cat <- fviz_pca_ind(pca.post,
                         palette = c( ),
                         addEllipses = TRUE,
                         ellipse.type = "confidence",
-                        legend.title = "Groups",
+                        legend.title = "Groups:",
                         repel = TRUE,
                         label = "none",
                         title = "Figure C.6b: Post-Construction Mammalian Groupings") + 
@@ -320,7 +319,7 @@ post.cam <- fviz_pca_ind(pca.post,
                         palette = c( ),
                         addEllipses = TRUE,
                         ellipse.type = "confidence",
-                        legend.title = "Groups",
+                        legend.title = "Groups:",
                         repel = TRUE,
                         label = "none",
                         title = "Figure C.8b: Post-Construction Camera Preference") + 
@@ -335,7 +334,7 @@ post.traffic <- fviz_pca_ind(pca.post,
                             palette = c(),
                             addEllipses = TRUE,
                             ellipse.type = "confidence",
-                            legend.title = "Groups",
+                            legend.title = "Groups:",
                             repel = TRUE,
                             label = "none",
                             title = "Figure C.9b: Post-Construction Traffic Preference") + 
@@ -350,7 +349,7 @@ post.dnc <- fviz_pca_ind(pca.post,
                              palette = c( ),
                              addEllipses = TRUE,
                              ellipse.type = "confidence",
-                             legend.title = "Groups",
+                             legend.title = "Groups:",
                              repel = TRUE,
                              label = "none",
                              title = "Figure C.7b: Post-Construction Diel Activity") + 
@@ -360,7 +359,7 @@ post.dnc <- fviz_pca_ind(pca.post,
                              check_overlap = T,
                              size = 2.5) + theme(plot.title = element_text(size=12), title = element_text(face = "italic"))
 
-# Generate Plots
+# Generate All Plots
 pre.scree
 pre.ind
 pre.var
@@ -371,8 +370,6 @@ pre.cat
 pre.cam
 pre.traffic
 pre.dnc
-
-
 post.scree
 post.ind
 post.var
@@ -384,16 +381,38 @@ post.cam
 post.traffic
 post.dnc
 
-
-# generate select
+# Generate Select Species
 pre.species
 pre.cat
 pre.dnc
 pre.cam
 pre.traffic
-
 post.species
 post.cat
 post.dnc
 post.cam
 post.traffic
+
+# Presentation Select Species
+pre.scree + theme(legend.position="bottom")
+post.scree + theme(legend.position="bottom")
+
+pre.var + theme(legend.position="bottom")
+post.var + theme(legend.position="bottom")
+
+pre.bp + theme(legend.position="bottom")
+post.bp + theme(legend.position="bottom")
+
+pre.species + theme(legend.position="bottom")
+post.species + theme(legend.position="bottom")
+
+pre.cat + theme(legend.position="bottom")
+post.cat + theme(legend.position="bottom")
+
+pre.dnc + theme(legend.position="bottom")
+post.dnc + theme(legend.position="bottom")
+
+pre.cam + theme(legend.position="bottom")
+post.cam + theme(legend.position="bottom")
+
+post.traffic + theme(legend.position="bottom")
